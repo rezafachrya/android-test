@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@drawable/bg1">
+
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        >
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            fontPath="fonts/Poppins-SemiBold.otf"
+            tools:ignore="MissingPrefix"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:id="@+id/ucap"
+            android:text="Divisi PFA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@id/ucap"
+            android:textSize="15sp"
+            fontPath="fonts/Poppins-Black.otf"
+            tools:ignore="MissingPrefix"
+            android:gravity="center"
+            android:id="@+id/kamu"
+            android:textColor="@color/white"
+            android:text="@string/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:id="@+id/car4"
+                android:background="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="11dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+
+                        fontPath="fonts/Poppins-SemiBold.otf"
+                        tools:ignore="MissingPrefix"
+                        android:textSize="17sp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat Datang "/>
+
+                    <TextView
+                        fontPath="fonts/Poppins-SemiBold.otf"
+                        tools:ignore="MissingPrefix"
+
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:text="Reza Fachriya"
+                        android:textSize="17sp" />
+                    <LinearLayout
+                        android:id="@+id/garis"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/tvName"
+                        android:layout_width="match_parent"
+                        android:background="@color/grey"
+                        android:layout_height="1dp"/>
+
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/garis"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:background="?attr/selectableItemBackground"
+                            android:id="@+id/home_topUpButton"
+                            android:layout_weight="0.50"
+                            android:layout_marginLeft="25dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/imdompet"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/bni_logo"/>
+<!--                            <TextView-->
+
+<!--                                fontPath="fonts/Poppins-Medium.otf"-->
+<!--                                tools:ignore="MissingPrefix"-->
+<!--                                android:layout_below="@id/imdompet"-->
+<!--                                android:textColor="@color/grey"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textSize="12dp"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Isi Ulang"/>-->
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:background="?attr/selectableItemBackground"
+                            android:layout_weight="0.50"
+                            android:layout_marginRight="25dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp">
+
+                            <ImageView
+                                android:layout_centerHorizontal="true"
+                                android:id="@+id/impoin"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:src="@drawable/bni_logo"/>
+<!--                            <TextView-->
+
+<!--                                fontPath="fonts/Poppins-Medium.otf"-->
+<!--                                tools:ignore="MissingPrefix"-->
+
+<!--                                android:textColor="@color/grey"-->
+<!--                                android:layout_below="@id/impoin"-->
+<!--                                android:gravity="center"-->
+<!--                                android:textSize="12dp"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Point Anda"/>-->
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="40dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/bni_logo"
+                    android:textColor="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+
+            fontPath="fonts/Poppins-Bold.otf"
+            tools:ignore="MissingPrefix"
+            android:layout_marginLeft="10dp"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:id="@+id/txte"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:layout_height="20dp"
+            android:text="Menu"/>
+
+<!--        <TextView-->
+<!--            android:layout_below="@id/txte"-->
+<!--            fontPath="fonts/Poppins-Regular.otf"-->
+<!--            tools:ignore="MissingPrefix"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:textSize="10dp"-->
+<!--            android:textColor="@color/grey"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Nikmati layanan kami"/>-->
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="5dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp"
+            android:id="@+id/home_mRide"
+            android:layout_width="0dp"
+            app:cardElevation="5dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.33"
+            android:clickable="true">
+
+            <RelativeLayout
+                android:id="@+id/kantorButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/icon_gedung"
+                    android:layout_above="@+id/textView3"
+                    android:layout_marginBottom="5dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    fontPath="fonts/Poppins-SemiBold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Kantor"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView3"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="5dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp"
+            android:id="@+id/home_mSend"
+            android:layout_width="0dp"
+            app:cardElevation="5dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.33"
+            android:clickable="true">
+            <RelativeLayout
+                android:id="@+id/bangunanButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/textView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/icon_rumah" />
+
+                <TextView
+
+                    fontPath="fonts/Poppins-SemiBold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Bangunan"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:id="@+id/textView2"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginLeft="5dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="10dp"
+            android:id="@+id/home_mCar"
+            android:layout_width="0dp"
+            app:cardElevation="5dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.33"
+            android:clickable="true">
+
+            <RelativeLayout
+                android:id="@+id/infoButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/textView6"
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/icon_info" />
+
+                <TextView
+
+                    fontPath="fonts/Poppins-SemiBold.otf"
+                    tools:ignore="MissingPrefix"
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+
+                    android:layout_marginBottom="5dp"
+                    android:maxLines="1"
+
+                    android:text="Info"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+</LinearLayout>
