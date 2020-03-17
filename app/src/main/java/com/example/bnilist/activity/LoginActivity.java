@@ -1,15 +1,12 @@
 package com.example.bnilist.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,12 +28,9 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import com.example.bnilist.MainActivity;
 import com.example.bnilist.R;
 import com.example.bnilist.Tools;
-import com.example.bnilist.api.ApiInterface;
-import com.example.bnilist.helper.ConfigHelper;
-import com.example.bnilist.helper.DialogHelper;
 import com.example.bnilist.model.DashboardModel;
 import com.example.bnilist.model.LoginModel;
-import com.example.bnilist.model.ResponseModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -56,7 +50,6 @@ import okhttp3.RequestBody;
 import okhttp3.Callback;
 import okhttp3.Call;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL;
@@ -84,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
     ProgressDialog loading;
     Context mContext;
-    ApiInterface mApiInterface;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     LoginModel loginModel;
@@ -104,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initComponent() {
         mContext = this;
-//        mApiInterface = ConfigHelper.getAPIService();
         adapterImageSlider = new AdapterImageSlider(this, new ArrayList<DashboardModel>());
         final List<DashboardModel> items = new ArrayList<>();
         for (int i = 0; i < array_image_place.length; i++) {
@@ -139,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = validasi();
                 if (msg != null) {
-                    DialogHelper.showMessage(mContext, msg);
+                    outlinedTextField.setError(msg);
                     return;
                 }
                 try {
@@ -304,9 +295,14 @@ public class LoginActivity extends AppCompatActivity {
                             String msg = json.getString("message");
                             if (code.equals("200")) {
                                 Intent intent = new Intent(mContext,MainActivity.class);
+                                intent.putExtra("CODE_REGION", phonenumber);
                                 startActivity(intent);
                             } else {
-                                showMessage(LoginActivity.this, msg.trim());
+                                LoginActivity.this.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        onClickedErrorDialog(LoginActivity.this);
+                                    }
+                                });
                             }
                         } catch (JSONException je) {
                             je.printStackTrace();
@@ -315,28 +311,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             });
-
     }
 
-
-    private void showMessage(Context view, String msg) {
-        AlertDialog.Builder attention = new AlertDialog.Builder(view);
-        //        attention.setIcon(R.drawable.img_attention);
-        attention.setTitle("Info..!");
-        attention.setMessage(msg);
-        attention.setCancelable(false);
-        attention.setPositiveButton("Ok",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        AlertDialog alert = attention.create();
-        alert.show();
+    public void onClickedErrorDialog(Context context) {
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Title")
+                .setMessage("Message")
+                .setPositiveButton("Ok", null)
+                .show();
     }
-
 }
 
 

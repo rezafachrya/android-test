@@ -14,12 +14,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class WilayahBangunanActivity extends AppCompatActivity {
-    @BindView(R.id.toolBar)
-    Toolbar toolBar;
-    @BindView(R.id.buttonKp)
-    MaterialButton buttonKp;
-    @BindView(R.id.buttonWpad)
-    MaterialButton buttonWpad;
+    @BindView(R.id.toolBar) Toolbar toolBar;
+    @BindView(R.id.buttonKp) MaterialButton buttonKp;
+    @BindView(R.id.buttonWpad) MaterialButton buttonWpad;
 //    @BindView(R.id.buttonWpd)
 //    MaterialButton buttonWpd;
 //    @BindView(R.id.buttonWpl)
