@@ -3,18 +3,21 @@ package com.example.bnilist.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegionResponseModel extends ResponseModel {
     @SerializedName("code")
     @Expose
     private String code;
+
     @SerializedName("message")
     @Expose
     private String message;
+
     @SerializedName("data")
     @Expose
-    private List<RegionModel> data = null;
+    private ArrayList<RegionModel> data;
 
     public String getCode() {
         return code;
@@ -32,12 +35,12 @@ public class RegionResponseModel extends ResponseModel {
         this.message = message;
     }
 
-    public List<RegionModel> getData() {
+
+    public ArrayList<RegionModel> getData() {
         return data;
     }
 
-    public void setData(List<RegionModel> data) {
+    public void setData(ArrayList<RegionModel> data) {
         this.data = data;
     }
-
 }

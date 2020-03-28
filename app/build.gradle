@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 
-    implementation 'com.dialog:plus:4+'
+    implementation 'com.github.ma7madfawzy:dialogPlus:4.1.4'
     implementation 'androidx.multidex:multidex:2.+'
 
     implementation 'com.github.thomper:sweet-alert-dialog:v1.4.0'

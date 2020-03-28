@@ -25,9 +25,12 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.balysv.materialripple.MaterialRippleLayout;
+import com.dialog.plus.ui.DialogPlus;
+import com.dialog.plus.ui.DialogPlusBuilder;
 import com.example.bnilist.MainActivity;
 import com.example.bnilist.R;
 import com.example.bnilist.Tools;
+import com.example.bnilist.helper.DialogHelper;
 import com.example.bnilist.model.DashboardModel;
 import com.example.bnilist.model.LoginModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -130,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = validasi();
                 if (msg != null) {
-                    outlinedTextField.setError(msg);
+                    DialogHelper.onClickedErrorDialog(LoginActivity.this, msg);
                     return;
                 }
                 try {
@@ -261,8 +264,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private String validasi() {
         String msg = null;
-        if (etPhone.getText().toString() == null) {
-            msg = "Data tidak lengkap";
+        if (etPhone.getText().toString().equals("")) {
+            msg = "Isikan Nomor Handphone Anda";
         }
         return msg;
     }
@@ -294,13 +297,18 @@ public class LoginActivity extends AppCompatActivity {
                             String code = json.getString("code");
                             String msg = json.getString("message");
                             if (code.equals("200")) {
-                                Intent intent = new Intent(mContext,MainActivity.class);
-                                intent.putExtra("CODE_REGION", phonenumber);
-                                startActivity(intent);
+                                LoginActivity.this.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        DialogHelper.onClickedErrorDialog(LoginActivity.this, "Berhasil Login");
+                                        Intent intent = new Intent(mContext,MainActivity.class);
+                                        intent.putExtra("phonenumber", phonenumber);
+                                        startActivity(intent);
+                                    }
+                                });
                             } else {
                                 LoginActivity.this.runOnUiThread(new Runnable() {
                                     public void run() {
-                                        onClickedErrorDialog(LoginActivity.this);
+                                        DialogHelper.onClickedErrorDialog(LoginActivity.this, "PASSWORD ANDA SALAH");
                                     }
                                 });
                             }
@@ -311,14 +319,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
             });
-    }
-
-    public void onClickedErrorDialog(Context context) {
-        new MaterialAlertDialogBuilder(context)
-                .setTitle("Title")
-                .setMessage("Message")
-                .setPositiveButton("Ok", null)
-                .show();
     }
 }
 

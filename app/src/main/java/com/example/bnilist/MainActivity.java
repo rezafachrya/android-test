@@ -34,10 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void initComponent() {
 
+        String phonenumber = getIntent().getStringExtra("phonenumber");
+
         kantorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahKantorActivity.class);
+                kantorActivityIntent.putExtra("phonenumber", phonenumber);
                 startActivity(kantorActivityIntent);
             }
         });

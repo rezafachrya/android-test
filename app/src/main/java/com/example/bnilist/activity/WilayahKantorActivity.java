@@ -5,21 +5,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.bnilist.MainActivity;
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.RegionAdapter;
-import com.example.bnilist.api.ApiCall;
 import com.example.bnilist.helper.ConfigHelper;
 import com.example.bnilist.model.RegionModel;
 import com.example.bnilist.model.RegionResponseModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -29,21 +34,29 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+import static com.example.bnilist.helper.ConfigHelper.BASEURL_REGION;
 
 public class WilayahKantorActivity extends AppCompatActivity {
     @BindView(R.id.toolBar)
     Toolbar toolBar;
     @BindView(R.id.rcWilayahKantor)
     RecyclerView rcWilayahKantor;
-    private SweetAlertDialog pDialog;
-    private String path, response;
-    private OkHttpClient client;
     private RegionResponseModel regionResponseModel;
-    private ApiCall apiCall;
-    private ArrayList<RegionModel> data;
+    private ArrayList<RegionModel> data = new ArrayList<>();
     private RegionAdapter regionAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+
+    OkHttpClient client = new OkHttpClient();
 
 
     @Override
@@ -52,6 +65,13 @@ public class WilayahKantorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wilayah_kantor);
         ButterKnife.bind(this);
         initComponent();
+        String phonenumber = getIntent().getStringExtra("phonenumber");
+        getRegionList(BASEURL_REGION, phonenumber);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        rcWilayahKantor.setLayoutManager(layoutManager);
+        rcWilayahKantor.setHasFixedSize(true);
+        regionAdapter = new RegionAdapter(this,data);
+        rcWilayahKantor.setAdapter(regionAdapter);
     }
 
     protected void initComponent () {
@@ -65,64 +85,54 @@ public class WilayahKantorActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        pDialog = new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
-        apiCall = new ApiCall();
-        data = new ArrayList<>();
-        layoutManager = new LinearLayoutManager(this);
-        rcWilayahKantor.setLayoutManager(layoutManager);
-        rcWilayahKantor.setHasFixedSize(true);
-        try {
-            path = ConfigHelper.BASEURL_REGION;
-            new GetDataFromServer().execute();
-        } catch (Exception e) {
-
-        }
     }
 
-    private class GetDataFromServer extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            try {
-                pDialog.getProgressHelper().setBarColor(Color
-                        .parseColor("#26A65B"));
-                pDialog.setTitleText("Loading");
-                pDialog.setCancelable(false);
-                pDialog.show();
-            } catch (Exception e) {
-            }
+    private void getRegionList(String postUrl, String phonenumber){
+
+        JSONObject jsonReq = new JSONObject();
+        try {
+            jsonReq.put("phonenumber",phonenumber);
+        } catch (JSONException je) {
+            je.printStackTrace();
         }
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            if(pDialog.isShowing()) {
-                pDialog.dismiss();
+        RequestBody body = RequestBody.create(JSON, jsonReq.toString());
+        Request request = new Request.Builder().url(postUrl).post(body).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                call.cancel();
             }
-            regionAdapter = new RegionAdapter(WilayahKantorActivity.this,
-                    data);
-            rcWilayahKantor.setAdapter(regionAdapter);
-        }
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                client = new OkHttpClient();
-                response = apiCall.GET(client, path);
-                Log.e("##JSON:", response);
-                Gson gson = new Gson();
-                Type type = new TypeToken<Collection<RegionModel>>() {
-                }.getType();
-                regionResponseModel = gson.fromJson(response, RegionResponseModel.class);
-                if(data.isEmpty()) {
-                    for(int i = 0; i < regionResponseModel.getData().size(); i++) {
-                        data.add(regionResponseModel.getData().get(i));
-                    }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String strJson = response.body().string();
+                    WilayahKantorActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONObject jsonObject = new JSONObject(strJson);
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                for(int i = 0; i < jsonArray.length(); i++) {
+                                    RegionModel rg = new RegionModel();
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    String code = jsonObject1.getString("code");
+                                    rg.setCode(code);
+                                    regionAdapter.notifyDataSetChanged();
+                                    data.add(rg);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+
             }
-            return null;
-        }
+        });
+
+
     }
 
 }
