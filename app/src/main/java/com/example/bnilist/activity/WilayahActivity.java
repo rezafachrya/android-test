@@ -5,32 +5,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import com.example.bnilist.MainActivity;
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.RegionAdapter;
-import com.example.bnilist.helper.ConfigHelper;
 import com.example.bnilist.model.RegionModel;
 import com.example.bnilist.model.RegionResponseModel;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,34 +32,31 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_REGION;
 
-public class WilayahKantorActivity extends AppCompatActivity {
+public class WilayahActivity extends AppCompatActivity {
     @BindView(R.id.toolBar)
     Toolbar toolBar;
-    @BindView(R.id.rcWilayahKantor)
-    RecyclerView rcWilayahKantor;
+    @BindView(R.id.rcWilayah)
+    RecyclerView rcWilayah;
     private RegionResponseModel regionResponseModel;
     private ArrayList<RegionModel> data = new ArrayList<>();
     private RegionAdapter regionAdapter;
 
-
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-
     OkHttpClient client = new OkHttpClient();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wilayah_kantor);
+        setContentView(R.layout.activity_wilayah);
         ButterKnife.bind(this);
         initComponent();
         String phonenumber = getIntent().getStringExtra("phonenumber");
         getRegionList(BASEURL_REGION, phonenumber);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        rcWilayahKantor.setLayoutManager(layoutManager);
-        rcWilayahKantor.setHasFixedSize(true);
+        rcWilayah.setLayoutManager(layoutManager);
+        rcWilayah.setHasFixedSize(true);
         regionAdapter = new RegionAdapter(this,data);
-        rcWilayahKantor.setAdapter(regionAdapter);
+        rcWilayah.setAdapter(regionAdapter);
     }
 
     protected void initComponent () {
@@ -107,7 +92,7 @@ public class WilayahKantorActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String strJson = response.body().string();
-                    WilayahKantorActivity.this.runOnUiThread(new Runnable() {
+                    WilayahActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -116,7 +101,11 @@ public class WilayahKantorActivity extends AppCompatActivity {
                                 for(int i = 0; i < jsonArray.length(); i++) {
                                     RegionModel rg = new RegionModel();
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    String id = jsonObject1.getString("id");
                                     String code = jsonObject1.getString("code");
+                                    String name = jsonObject1.getString("name");
+                                    rg.setId(id);
+                                    rg.setName(name);
                                     rg.setCode(code);
                                     regionAdapter.notifyDataSetChanged();
                                     data.add(rg);
@@ -131,8 +120,5 @@ public class WilayahKantorActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
 }

@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.bnilist.activity.InfoActivity;
-import com.example.bnilist.activity.KantorActivity;
+import com.example.bnilist.activity.WilayahActivity;
 import com.example.bnilist.activity.WilayahBangunanActivity;
-import com.example.bnilist.activity.WilayahKantorActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         kantorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahKantorActivity.class);
+                Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahActivity.class);
                 kantorActivityIntent.putExtra("phonenumber", phonenumber);
                 startActivity(kantorActivityIntent);
             }

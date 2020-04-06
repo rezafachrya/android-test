@@ -1,57 +1,58 @@
 package com.example.bnilist.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bnilist.ItemClickListener;
 import com.example.bnilist.R;
-import com.example.bnilist.activity.DetailActivity;
-import com.example.bnilist.holder.AssetHolder;
-import com.example.bnilist.model.AssetModel;
+import com.example.bnilist.model.TassetModel;
 
 import java.util.ArrayList;
 
-public class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
-    Context ctx;
-    public ArrayList<AssetModel> offices;
+public class TassetAdapter extends RecyclerView.Adapter<TassetAdapter.TassetHolder> {
+    Context context;
+    public ArrayList<TassetModel> data;
+    private ItemClickListener mClickListener;
 
-    public AssetAdapter(Context ctx, ArrayList<AssetModel> offices){
-        this.ctx = ctx;
-        this.offices=offices;
+    public TassetAdapter(Context context, ArrayList<TassetModel> data){
+        super();
+        this.context = context;
+        this.data = data;
     }
+
     @Override
-    public AssetHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_item, null);
-        AssetHolder holder = new AssetHolder(v);
+    public TassetAdapter.TassetHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.activity_list_item,parent,false);
+        TassetAdapter.TassetHolder holder = new TassetAdapter.TassetHolder(itemView);
         return holder;
     }
 
     //DATA BOUND TO VIEWS
     @Override
-    public void onBindViewHolder(AssetHolder holder, int position) {
+    public void onBindViewHolder(TassetAdapter.TassetHolder holder, int position) {
         //BIND DATA
-        holder.tvName.setText(offices.get(position).getNama());
-
-
-        Animation animation = AnimationUtils.loadAnimation(ctx, android.R.anim.slide_in_left);
+        holder.tvName.setText(data.get(position).getNama());
+        Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
         holder.itemView.startAnimation(animation);
 
+
         //IMPLEMENT CLICK LISTENER
+        /*
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
 
-                //INTENT OBJ
+                INTENT OBJ
                 Intent i=new Intent(ctx, DetailActivity.class);
 
-                //ADD DATA TO OUR INTENT
+                ADD DATA TO OUR INTENT
                 i.putExtra("Nama",offices.get(pos).getNama());
                 i.putExtra("Image",offices.get(pos).getImg());
                 i.putExtra("Address",offices.get(pos).getAlamat());
@@ -78,13 +79,38 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetHolder> {
 
             }
         });
+         */
     }
-    //GET TOTAL NUM OF Offices
+    //GET TOTAL NUM OF data
     @Override
     public int getItemCount() {
-        return offices.size();
+        return data.size();
     }
 
+    class TassetHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView tvName;
 
+
+        public TassetHolder(View itemView){
+            super(itemView);
+
+            tvName = itemView.findViewById(R.id.tvName);
+            itemView.setOnClickListener(this);
+        }
+        @Override
+        public void onClick(View view){
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        }
+    }
+
+    // allows clicks events to be caught
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
 }

@@ -12,7 +12,6 @@ import org.w3c.dom.Text;
 
 public class AssetHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView tvName;
-
     ItemClickListener itemClickListener;
 
     public AssetHolder(View itemView) {
