@@ -1,17 +1,20 @@
 package com.example.bnilist.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bnilist.ItemClickListener;
 import com.example.bnilist.R;
+import com.example.bnilist.activity.KantorActivity;
 import com.example.bnilist.model.RegionModel;
 
 import java.util.ArrayList;
@@ -20,7 +23,6 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
 
     Context context;
     public ArrayList<RegionModel> data;
-    private ItemClickListener mClickListener;
 
     public RegionAdapter(Context context, ArrayList<RegionModel> data){
         super();
@@ -30,7 +32,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
     @Override
     public RegionHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.activity_wilayah_item_kantor,parent,false);
+        View itemView = inflater.inflate(R.layout.activity_wilayah_item,parent,false);
         RegionHolder holder = new RegionHolder(itemView);
         return holder;
     }
@@ -43,6 +45,18 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
         holder.itemView.startAnimation(animation);
 
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View v, int pos) {
+//                Toast.makeText(context, data.get(pos).getId(),Toast.LENGTH_LONG).show();
+                Intent i = new Intent(context, KantorActivity.class);
+
+                //Add data
+                i.putExtra("id",data.get(pos).getId());
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
         //IMPLEMENT CLICK LISTENER
         /*
         holder.setItemClickListener(new ItemClickListener() {
@@ -90,6 +104,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
     class RegionHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvCode;
+        ItemClickListener itemClickListener;
 
         public RegionHolder(View itemView) {
             super(itemView);
@@ -98,20 +113,30 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
             itemView.setOnClickListener(this);
         }
 
+//        @Override
+//        public void onClick(View view) {
+//            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+//        }
         @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        public void onClick(View v) {
+            this.itemClickListener.onItemClick(v,getLayoutPosition());
+        }
+        public void setItemClickListener(ItemClickListener ic)
+        {
+            this.itemClickListener=ic;
         }
     }
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
+//    // allows clicks events to be caught
+//    void setClickListener(ItemClickListener itemClickListener) {
+//        this.mClickListener = itemClickListener;
+//    }
+//
+//    // parent activity will implement this method to respond to click events
+//    public interface ItemClickListener {
+//        void onItemClick(View view, int position);
+//    }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
+
 
 }
