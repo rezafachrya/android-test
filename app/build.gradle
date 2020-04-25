@@ -43,7 +43,8 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     // third party dependencies -------------------------------------------------------------------
     implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
-    implementation 'com.github.bumptech.glide:glide:3.7.0'           // himage loader
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'          // himage loader
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.chivorns:smartmaterialspinner:1.1.6'
@@ -53,10 +54,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    //implementation 'com.github.f0ris.sweetalert:library:1.5.1'
 
-    implementation 'com.github.ma7madfawzy:dialogPlus:4.1.4'
-    implementation 'androidx.multidex:multidex:2.+'
+    implementation 'me.relex:circleindicator:2.1.4'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
-    implementation 'com.github.thomper:sweet-alert-dialog:v1.4.0'
+
 }

@@ -104,6 +104,7 @@ public class WilayahActivity extends AppCompatActivity {
                                     String id = jsonObject1.getString("id");
                                     String code = jsonObject1.getString("code");
                                     String name = jsonObject1.getString("name");
+
                                     rg.setId(id);
                                     rg.setName(name);
                                     rg.setCode(code);

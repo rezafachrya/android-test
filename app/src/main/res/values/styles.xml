@@ -108,4 +108,13 @@
         <item name="android:background">#f5f5f5</item>
     </style>
 
+<!--    style for collapsing toolbar-->
+    <style name="TextAppearance.Design.CollapsingToolbar.Expanded.Shadow">
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowRadius">8</item>
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
 </resources>

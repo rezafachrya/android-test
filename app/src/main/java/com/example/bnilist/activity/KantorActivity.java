@@ -2,6 +2,7 @@ package com.example.bnilist.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.example.bnilist.R;
 import com.example.bnilist.adapter.RegionAdapter;
 import com.example.bnilist.adapter.TassetAdapter;
 import com.example.bnilist.model.RegionModel;
+import com.example.bnilist.model.TassetDetailModel;
 import com.example.bnilist.model.TassetModel;
 import com.google.android.material.button.MaterialButton;
 
@@ -102,15 +104,75 @@ public class KantorActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(strJson);
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                                 for(int i = 0; i < jsonArray.length(); i++) {
-                                    TassetModel ts = new TassetModel();
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     Integer id = jsonObject1.getInt("id");
                                     String nama = jsonObject1.getString("nama");
+                                    String kpa = jsonObject1.getString("kpa");
+                                    String npa = jsonObject1.getString("npa");
+                                    String alamat = jsonObject1.getString("alamat");
+                                    String provinsi = jsonObject1.getString("provinsi");
+                                    String kota = jsonObject1.getString("kota");
+                                    String kelurahan = jsonObject1.getString("kelurahan");
+                                    String kecamatan = jsonObject1.getString("kecamatan");
+                                    String kodepos = jsonObject1.getString("kodepos");
+                                    String jmllantai= jsonObject1.getString("jmllantai");
+                                    String luasbangunan = jsonObject1.getString("luasbangunan");
+                                    String nop = jsonObject1.getString("nop");
+                                    String doclegal = jsonObject1.getString("doclegal");
+                                    String luastanah = jsonObject1.getString("luastanah");
+                                    String noimb = jsonObject1.getString("noimb");
+                                    String nib = jsonObject1.getString("nib");
+                                    String urlimage1 = jsonObject1.getString("urlimage1");
+                                    String urlimage2 = jsonObject1.getString("urlimage2");
+                                    String urlimage3 = jsonObject1.getString("urlimage3");
+                                    String urlimage4 = jsonObject1.getString("urlimage4");
+                                    Integer longitude = jsonObject1.getInt("longitude");
+                                    Integer latitude = jsonObject1.getInt("latitude");
+//                                    assetdetail = new ArrayList<>();
+//                                    assetdetail.clear();
+                                    ArrayList<TassetDetailModel> assetdetail = new ArrayList<>();
+                                    JSONArray detaildataArray = jsonObject1.getJSONArray("detaildata");
+                                    for(int j = 0; j < detaildataArray.length(); j++ ) {
+                                        JSONObject detaildata = detaildataArray.getJSONObject(j);
+                                        String perolehan = detaildata.getString("perolehan");
+                                        String harga = detaildata.getString("harga");
+                                        String nilaibuku = detaildata.getString("nilaibuku");
+
+                                        TassetDetailModel tsd = new TassetDetailModel();
+                                        tsd.setPerolehan(perolehan);
+                                        tsd.setHarga(harga);
+                                        tsd.setNilaibuku(nilaibuku);
+                                        assetdetail.add(tsd);
+                                    }
+                                    TassetModel ts = new TassetModel();
                                     ts.setId(id);
                                     ts.setNama(nama);
-                                    tassetAdapter.notifyDataSetChanged();
+                                    ts.setKpa(kpa);
+                                    ts.setNpa(npa);
+                                    ts.setAlamat(alamat);
+                                    ts.setProvinsi(provinsi);
+                                    ts.setKota(kota);
+                                    ts.setKecamatan(kecamatan);
+                                    ts.setKelurahan(kelurahan);
+                                    ts.setKodepos(kodepos);
+                                    ts.setJmllantai(jmllantai);
+                                    ts.setLuasbangunan(luasbangunan);
+                                    ts.setNop(nop);
+                                    ts.setDoclegal(doclegal);
+                                    ts.setLuastanah(luastanah);
+                                    ts.setNoimb(noimb);
+                                    ts.setNib(nib);
+                                    ts.setUrlimage1(urlimage1);
+                                    ts.setUrlimage2(urlimage2);
+                                    ts.setUrlimage3(urlimage3);
+                                    ts.setUrlimage4(urlimage4);
+                                    ts.setLongitude(longitude);
+                                    ts.setLatitude(latitude);
+                                    ts.setDetaildata(assetdetail);
+                                    //TODO penambahan if
                                     data.add(ts);
                                 }
+                                tassetAdapter.notifyDataSetChanged();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -118,7 +180,6 @@ public class KantorActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
         });
     }
