@@ -57,43 +57,6 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
                 context.startActivity(i);
             }
         });
-        //IMPLEMENT CLICK LISTENER
-        /*
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View v, int pos) {
-
-                INTENT OBJ
-                Intent i=new Intent(ctx, DetailActivity.class);
-
-                ADD DATA TO OUR INTENT
-                i.putExtra("Nama",offices.get(pos).getNama());
-                i.putExtra("Image",offices.get(pos).getImg());
-                i.putExtra("Address",offices.get(pos).getAlamat());
-                i.putExtra("Npa",offices.get(pos).getNpa());
-                i.putExtra("Nib",offices.get(pos).getNib());
-                i.putExtra("Kpa",offices.get(pos).getKpa());
-                i.putExtra("Kelurahan",offices.get(pos).getKelurahan());
-                i.putExtra("Kecamatan",offices.get(pos).getKecamatan());
-                i.putExtra("Kota",offices.get(pos).getKota());
-                i.putExtra("Provinsi",offices.get(pos).getProvinsi());
-                i.putExtra("Kodepos",offices.get(pos).getKodepos());
-                i.putExtra("Luastanah",offices.get(pos).getLuastanah());
-                i.putExtra("Luasbangunan",offices.get(pos).getLuasbangunan());
-                i.putExtra("Jumlahlantai",offices.get(pos).getJml_lantai());
-                i.putExtra("Legalitas",offices.get(pos).getDoc_legal());
-                i.putExtra("Noimb",offices.get(pos).getNo_imb());
-                i.putExtra("Nopajak",offices.get(pos).getNop());
-                i.putExtra("Latitude",offices.get(pos).getLatitude());
-                i.putExtra("Longitude",offices.get(pos).getLongitude());
-
-                //START DETAIL ACTIVITY
-                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ctx.startActivity(i);
-
-            }
-        });
-         */
     }
     //GET TOTAL NUM OF data
     @Override
@@ -113,10 +76,6 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
             itemView.setOnClickListener(this);
         }
 
-//        @Override
-//        public void onClick(View view) {
-//            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-//        }
         @Override
         public void onClick(View v) {
             this.itemClickListener.onItemClick(v,getLayoutPosition());
@@ -126,17 +85,4 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
             this.itemClickListener=ic;
         }
     }
-
-//    // allows clicks events to be caught
-//    void setClickListener(ItemClickListener itemClickListener) {
-//        this.mClickListener = itemClickListener;
-//    }
-//
-//    // parent activity will implement this method to respond to click events
-//    public interface ItemClickListener {
-//        void onItemClick(View view, int position);
-//    }
-
-
-
 }

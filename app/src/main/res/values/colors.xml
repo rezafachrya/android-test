@@ -54,6 +54,7 @@
     <color name="overlay_dark_10">#1A000000</color>
     <color name="overlay_dark_30">#4D000000</color>
     <color name="overlay_dark_40">#66000000</color>
+    <color name="light_grey">#f1f1f1</color>
 
 
 </resources>

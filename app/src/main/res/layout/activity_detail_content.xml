@@ -1,768 +1,786 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="30dp"
+    android:background="@color/grey"
+    android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.DetailActivity"
     tools:showIn="@layout/activity_detail">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="340dp"
-            android:adjustViewBounds="true">
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nested_scroll_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:scrollbars="none"
-                android:scrollingCache="true"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <androidx.viewpager.widget.ViewPager
-                                android:id="@+id/pager"
-                                android:layout_width="match_parent"
-                                android:layout_height="300dp"
-                                android:background="@color/grey_20"
-                                android:foreground="@color/overlay_dark_10" />
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@android:color/white"
-                                android:orientation="vertical"
-                                android:paddingBottom="@dimen/spacing_large"
-                                android:paddingLeft="@dimen/spacing_large"
-                                android:paddingRight="@dimen/spacing_large"
-                                android:paddingTop="@dimen/spacing_middle">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/spacing_medium"
-                                    android:gravity="bottom"
-                                    android:orientation="horizontal">
-
-                                    <LinearLayout
-                                        android:id="@+id/layout_dots"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:orientation="horizontal" />
-                                </LinearLayout>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
-        </LinearLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
             <TextView
-                android:id="@+id/tvNama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="PT Multi Inti Sarana"
-                android:fontFamily="sans-serif"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:paddingBottom="5dp"/>
+                android:fontFamily="@font/poppins_bold"
+                android:paddingStart="10dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="10dp"
+                android:text="@string/detailasset"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/grey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="10dp"
-                    >
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"/>
-                </LinearLayout>
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/noasset"
+                    android:textColor="#000000" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="No Aset"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvNpa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="NIB Aset"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvNib"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Kelas Aset"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvKpa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat Aset"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvAddress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Kelurahan"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvKelurahan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Kecamatan"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvKecamatan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Kota"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvKota"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Provinsi"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvProvinsi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Kode Pos"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvKodepos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="LT / LB"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvLuastanah"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            android:paddingRight="5dp"
-                            />
-                        <RelativeLayout
-                            android:gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingRight="5dp">
-
-                            <TextView
-                                android:layout_toRightOf="@id/mlt"
-                                fontPath="fonts/Poppins-SemiBold.otf"
-                                tools:ignore="MissingPrefix"
-                                android:textSize="10dp"
-                                android:textColor="@color/colorTextGray"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2"/>
-                            <TextView
-
-                                fontPath="fonts/Poppins-SemiBold.otf"
-                                tools:ignore="MissingPrefix"
-                                android:textColor="@color/black"
-                                android:id="@+id/mlt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="m"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="/"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvLuasbangunan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            android:paddingRight="5dp"
-                            />
-                        <RelativeLayout
-                            android:gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingRight="5dp">
-
-                            <TextView
-                                android:layout_toRightOf="@id/mlb"
-                                fontPath="fonts/Poppins-SemiBold.otf"
-                                tools:ignore="MissingPrefix"
-                                android:textSize="10dp"
-                                android:textColor="@color/colorTextGray"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2"/>
-                            <TextView
-
-                                fontPath="fonts/Poppins-SemiBold.otf"
-                                tools:ignore="MissingPrefix"
-                                android:textColor="@color/black"
-                                android:id="@+id/mlb"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="m"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Jumlah Lantai"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvJmlantai"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Hak Kepemilikan"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvDoklegal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="IMB"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvNoimb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingBottom="15dp"
-                        android:paddingTop="5dp"
-                        >
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="No Objek Pajak"
-                            android:fontFamily="sans-serif"
-                            android:textColor="#000000"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:paddingRight="10dp"/>
-                        <TextView
-                            android:id="@+id/tvNmrpjk"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:text="Gender"
-                            android:textColor="#000000"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Tabel"
-                            android:layout_gravity="start"
-                            android:textColor="@color/black"/>
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="(Rp Juta)"
-                            android:gravity="right"
-                            android:textColor="@color/black"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="15dp">
-                            <TableRow android:padding="5dp"
-                                android:background="@drawable/table_row_bg">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:paddingRight="10dp"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:text="Jenis Aset" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:textStyle="bold"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:paddingRight="10dp"
-                                    android:textSize="12sp"
-                                    android:text="Nilai Revaluasi" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:paddingRight="10dp"
-                                    android:textStyle="bold"
-                                    android:textSize="12sp"
-                                    android:text="Nilai Perolehan" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:textAlignment="center"
-                                    android:paddingRight="10dp"
-                                    android:text="Nilai Buku" />
-                            </TableRow>
-                            <TableRow
-                                android:padding="5dp"
-                                android:background="@drawable/table_row_bg">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Tanah" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 176.982" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 33.042" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 33.042" />
-                            </TableRow>
-                            <TableRow
-                                android:padding="5dp"
-                                android:background="@drawable/table_row_bg">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Bangunan" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. -" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 443.870" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 414.279" />
-                            </TableRow>
-                            <TableRow
-                                android:padding="5dp"
-                                android:background="@drawable/table_row_last_bg">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Total" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 176.982" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:background="@drawable/table_cell_bg"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 476.913" />
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:textAlignment="center"
-                                    android:layout_weight="1"
-                                    android:textSize="12sp"
-                                    android:text="Rp. 447.321" />
-                            </TableRow>
-                        </TableLayout>
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvNpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/nibasset"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvNib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/kelasasset"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvKpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/alamat"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/kelurahan"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvKelurahan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/kecamatan"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvKecamatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/kota"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvKota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/provinsi"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvProvinsi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/kodepos"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvKodepos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/ltlb"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvLuastanah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="5dp"
+                    android:textColor="#000000" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/mlt"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/angka2"
+                        android:textColor="@color/colorTextGray"
+                        android:textSize="12sp"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/mlt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/m"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        tools:ignore="MissingPrefix" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/slash" />
+
+                <TextView
+                    android:id="@+id/tvLuasbangunan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="5dp"
+                    android:textColor="#000000" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/mlb"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/angka2"
+                        android:textColor="@color/colorTextGray"
+                        android:textSize="12sp"
+                        tools:ignore="MissingPrefix" />
+
+                    <TextView
+                        android:id="@+id/mlb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/m"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        tools:ignore="MissingPrefix" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/jml_lantai"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvJmlantai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/doc_legal"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvDoklegal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/imb"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvNoimb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/nop"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/colon" />
+
+                <TextView
+                    android:id="@+id/tvNmrpjk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#000000" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/tabel"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="end"
+                    android:paddingTop="5dp"
+                    android:text="@string/juta"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/light_grey">
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/jnsasset"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/nilaieval"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/nilaiperolehan"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/nilaibuku"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/tanah"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/perolehan1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/bangunan"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text="@string/total"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="12sp" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

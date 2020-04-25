@@ -2,43 +2,30 @@ package com.example.bnilist.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.example.bnilist.R;
-import com.example.bnilist.Tools;
-import com.example.bnilist.model.AssetModel;
+import com.example.bnilist.adapter.SlideShowUrlAdapter;
+import com.example.bnilist.model.TassetDetailModel;
+import com.example.bnilist.model.TassetModel;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
 
 public class DetailActivity extends AppCompatActivity {
 
-    //VIEWS
-
-    @BindView(R.id.tvNama)
-    TextView tvNama;
     @BindView(R.id.tvKota)
     TextView tvKota;
     @BindView(R.id.tvAddress)
@@ -69,18 +56,19 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvNoimb;
     @BindView(R.id.tvNmrpjk)
     TextView tvNmrpjk;
-    @BindView(R.id.btnMaps)
-    Button btnMaps;
+    @BindView(R.id.perolehan1)
+    TextView perolehan1;
     @BindView(R.id.toolBar)
     Toolbar toolBar;
+    @BindView(R.id.pager)
+    ViewPager viewPager;
+    @BindView(R.id.circleIndicator_ID)
+    CircleIndicator indicator3;
     //tambahan
-    private ViewPager viewPager;
-    private LinearLayout layout_dots;
-    private Runnable runnable = null;
-    private Handler handler = new Handler();
-    private AdapterImageSlider adapterImageSlider;
-
-
+    private Handler handler;
+    private Runnable runnable;
+    private Timer timer;
+    private SlideShowUrlAdapter slideShowUrlAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +76,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("BNI PFA");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initComponent();
     }
 
@@ -101,165 +90,68 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //images
+        String[] imgs = {
+                "https://cdn.idntimes.com/content-images/duniaku/post/20200121/digimon-psi-5a13dc74a5c35dc9538a647bb6696116.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/61S51R1F1AL._SX258_BO1,204,203,200_.jpg",
+                "https://punishedhag.files.wordpress.com/2017/06/l-subs-digimon-universe-appli-monsters-31-e04515b3720p-mkv_snapshot_14-03_2017-05-19_13-20-16.jpg?w=1088",
+        };
+        slideShowUrlAdapter = new SlideShowUrlAdapter(this, imgs);
+        viewPager.setAdapter(slideShowUrlAdapter);
+        indicator3.setViewPager(viewPager);
+        handler = new Handler();
 
         //RECEIVE OUR DATA
         Intent i=getIntent();
-        final int[] arrImage = i.getExtras().getIntArray("Image");
-        final String name = i.getExtras().getString("Nama");
-        final String kota = i.getExtras().getString("Kota");
-        final String address = i.getExtras().getString("Address");
-        final String noparentasset = i.getExtras().getString("Npa");
-        final String nibparentasset = i.getExtras().getString("Nib");
-        final String kelasparentasset = i.getExtras().getString("Kpa");
-        final String kelurahan = i.getExtras().getString("Kelurahan");
-        final String kecamatan = i.getExtras().getString("Kecamatan");
-        final String provinsi = i.getExtras().getString("Provinsi");
-        final String kodepos = i.getExtras().getString("Kodepos");
-        final String lt = i.getExtras().getString("Luastanah");
-        final String lb = i.getExtras().getString("Luasbangunan");
-        final String jumlahlantai = i.getExtras().getString("Jumlahlantai");
-        final String legalitas = i.getExtras().getString("Legalitas");
-        final String noimb = i.getExtras().getString("Noimb");
-        final String nopajak = i.getExtras().getString("Nopajak");
-        final String ls = i.getExtras().getString("Latitude");
-        final String bt = i.getExtras().getString("Longitude");
+        //cast to get extra
+//        TassetModel tassetModel = (TassetModel) i.getExtras().getSerializable("data");
+        TassetModel tassetModel = (TassetModel) Objects.requireNonNull(i.getExtras()).getSerializable("data");
+//        //ASSIGN DATA TO THOSE VIEWS
+        getSupportActionBar().setTitle(tassetModel != null ? tassetModel.getNama() : "");
+        tvKota.setText(tassetModel != null ? tassetModel.getKota() : "");
+        tvAddress.setText(tassetModel != null ? tassetModel.getAlamat() : "");
+        tvNpa.setText(tassetModel != null ? tassetModel.getNpa() : "");
+        tvNib.setText(tassetModel != null ? tassetModel.getNib() : "");
+        tvKpa.setText(tassetModel != null ? tassetModel.getKpa() : "");
+        tvKelurahan.setText(tassetModel != null ? tassetModel.getKelurahan() : "");
+        tvKecamatan.setText(tassetModel != null ? tassetModel.getKecamatan() : "");
+        tvProvinsi.setText(tassetModel != null ? tassetModel.getProvinsi() : "");
+        tvKodepos.setText(tassetModel != null ? tassetModel.getKodepos() : "");
+        tvLuastanah.setText(tassetModel != null ? tassetModel.getLuastanah() : "");
+        tvLuasBangunan.setText(tassetModel != null ? tassetModel.getLuasbangunan() : "");
+        tvJmlantai.setText(tassetModel != null ? tassetModel.getJmllantai() : "");
+        tvDoklegal.setText(tassetModel != null ? tassetModel.getDoclegal() : "");
+        tvNoimb.setText(tassetModel != null ? tassetModel.getNoimb() : "");
+        tvNmrpjk.setText(tassetModel != null ? tassetModel.getNop() : "");
+        perolehan1.setText(tassetModel.getDetaildata().get(0).getPerolehan());
+//        btnMaps.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Uri gmmIntentUri = Uri.parse("geo:0,0?q=-6.295635,106.665860");
+//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                mapIntent.setPackage("com.google.android.apps.maps");
+//                startActivity(mapIntent);
+//
+//            }
+//        });
 
-        //tambahan
-        layout_dots = (LinearLayout) findViewById(R.id.layout_dots);
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        adapterImageSlider = new AdapterImageSlider(this, new ArrayList<AssetModel>());
-        final List<AssetModel> items = new ArrayList<>();
-        for (int j = 0; j < arrImage.length; j++) {
-            AssetModel obj = new AssetModel();
-            obj.image = arrImage[j];
-            obj.imageDrw = getResources().getDrawable(obj.image);
-            items.add(obj);
-        }
-        adapterImageSlider.setItems(items);
-        viewPager.setAdapter(adapterImageSlider);
-        // displaying selected image first
-        viewPager.setCurrentItem(0);
-        addBottomDots(layout_dots, adapterImageSlider.getCount(), 0);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int pos, float positionOffset, int positionOffsetPixels) {
+        runnable = () -> {
+            int i1 = viewPager.getCurrentItem();
+            if(i1 == slideShowUrlAdapter.images.length -1) {
+                i1 = 0;
+                viewPager.setCurrentItem(i1, true);
+            } else {
+                i1++;
+                viewPager.setCurrentItem(i1, true);
             }
+        };
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
-            public void onPageSelected(int pos) {
-                addBottomDots(layout_dots, adapterImageSlider.getCount(), pos);
+            public void run() {
+                handler.post(runnable);
             }
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
-        //ASSIGN DATA TO THOSE VIEWS
-//        img.setImageResource(arrImage[0]);
-        tvNama.setText(name);
-        tvKota.setText(kota);
-        tvAddress.setText(address);
-        tvNpa.setText(noparentasset);
-        tvNib.setText(nibparentasset);
-        tvKpa.setText(kelasparentasset);
-        tvKelurahan.setText(kelurahan);
-        tvKecamatan.setText(kecamatan);
-        tvProvinsi.setText(provinsi);
-        tvKodepos.setText(kodepos);
-        tvLuastanah.setText(lt);
-        tvLuasBangunan.setText(lb);
-        tvJmlantai.setText(jumlahlantai);
-        tvDoklegal.setText(legalitas);
-        tvNoimb.setText(noimb);
-        tvNmrpjk.setText(nopajak);
-        btnMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=-6.295635,106.665860");
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
-
-            }
-        });
-    }
-
-    private void addBottomDots(LinearLayout layout_dots, int size, int current) {
-        ImageView[] dots = new ImageView[size];
-        layout_dots.removeAllViews();
-        for (int i = 0; i < dots.length; i++) {
-            dots[i] = new ImageView(this);
-            int width_height = 15;
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(new ViewGroup.LayoutParams(width_height, width_height));
-            params.setMargins(10, 0, 10, 0);
-            dots[i].setLayoutParams(params);
-            dots[i].setImageResource(R.drawable.shape_circle_outline);
-            dots[i].setColorFilter(ContextCompat.getColor(this, R.color.grey_40), PorterDuff.Mode.SRC_ATOP);
-            layout_dots.addView(dots[i]);
-        }
-        if (dots.length > 0) {
-            dots[current].setImageResource(R.drawable.shape_circle);
-            dots[current].setColorFilter(ContextCompat.getColor(this, R.color.grey_40), PorterDuff.Mode.SRC_ATOP);
-        }
-    }
-
-    private static class AdapterImageSlider extends PagerAdapter {
-        private Activity act;
-        private List<AssetModel> items;
-        private AdapterImageSlider.OnItemClickListener onItemClickListener;
-        private interface OnItemClickListener {
-            void onItemClick(View view, AssetModel obj);
-        }
-        public void setOnItemClickListener(AdapterImageSlider.OnItemClickListener onItemClickListener) {
-            this.onItemClickListener = onItemClickListener;
-        }
-        // constructor
-        private AdapterImageSlider(Activity activity, List<AssetModel> items) {
-            this.act = activity;
-            this.items = items;
-        }
-        @Override
-        public int getCount() {
-            return this.items.size();
-        }
-        public AssetModel getItem(int pos) {
-            return items.get(pos);
-        }
-        public void setItems(List<AssetModel> items) {
-            this.items = items;
-            notifyDataSetChanged();
-        }
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == ((RelativeLayout) object);
-        }
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            final AssetModel o = items.get(position);
-            LayoutInflater inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = inflater.inflate(R.layout.login_slider_image, container, false);
-            ImageView image = (ImageView) v.findViewById(R.id.image);
-            MaterialRippleLayout lyt_parent = (MaterialRippleLayout) v.findViewById(R.id.lyt_parent);
-            Tools.displayImageOriginal(act, image, o.image);
-            lyt_parent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(v, o);
-                    }
-                }
-            });
-            ((ViewPager) container).addView(v);
-            return v;
-        }
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            ((ViewPager) container).removeView((RelativeLayout) object);
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (runnable != null) handler.removeCallbacks(runnable);
-        super.onDestroy();
+        }, 4000, 4000);
     }
 }

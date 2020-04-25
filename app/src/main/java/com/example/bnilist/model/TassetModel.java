@@ -3,9 +3,10 @@ package com.example.bnilist.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TassetModel {
+public class TassetModel implements Serializable{
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -26,9 +27,9 @@ public class TassetModel {
     @Expose
     private String alamat;
 
-    @SerializedName("propinsi")
+    @SerializedName("provinsi")
     @Expose
-    private String propinsi;
+    private String provinsi;
 
     @SerializedName("kota")
     @Expose
@@ -98,9 +99,9 @@ public class TassetModel {
     @Expose
     private String urlimage4;
 
-    @SerializedName("data")
+    @SerializedName("detaildata")
     @Expose
-    private ArrayList<TassetDetailModel> data;
+    private ArrayList<TassetDetailModel> detaildata;
 
     public Integer getId() {
         return id;
@@ -230,12 +231,12 @@ public class TassetModel {
         this.urlimage4 = urlimage4;
     }
 
-    public String getPropinsi() {
-        return propinsi;
+    public String getProvinsi() {
+        return provinsi;
     }
 
-    public void setPropinsi(String propinsi) {
-        this.propinsi = propinsi;
+    public void setProvinsi(String provinsi) {
+        this.provinsi = provinsi;
     }
 
     public String getKecamatan() {
@@ -286,11 +287,12 @@ public class TassetModel {
         this.longitude = longitude;
     }
 
-    public ArrayList<TassetDetailModel> getData() {
-        return data;
+
+    public ArrayList<TassetDetailModel> getDetaildata() {
+        return detaildata;
     }
 
-    public void setData(ArrayList<TassetDetailModel> data) {
-        this.data = data;
+    public void setDetaildata(ArrayList<TassetDetailModel> detaildata) {
+        this.detaildata = detaildata;
     }
 }

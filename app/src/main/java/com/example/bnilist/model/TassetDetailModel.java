@@ -3,7 +3,9 @@ package com.example.bnilist.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TassetDetailModel {
+import java.io.Serializable;
+
+public class TassetDetailModel implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
