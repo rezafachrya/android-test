@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/white"
     android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.DetailActivity"
@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/grey">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -641,7 +642,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/perolehan1"
+                        android:id="@+id/tvRevalTanah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -654,6 +655,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvPerolehanTanah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -666,6 +668,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvNilaibukuTanah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -692,6 +695,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvRevalBangunan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -704,6 +708,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvPerolehanBangunan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -716,6 +721,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvNilaibukuBangunan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -742,6 +748,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvRevalTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -754,6 +761,7 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvPerolehanTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
@@ -763,9 +771,10 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:text=""
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
 
                     <TextView
+                        android:id="@+id/tvNilaibukuTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"

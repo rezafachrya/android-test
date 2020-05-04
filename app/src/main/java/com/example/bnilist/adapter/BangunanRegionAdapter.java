@@ -8,38 +8,39 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bnilist.ItemClickListener;
 import com.example.bnilist.R;
-import com.example.bnilist.activity.KantorActivity;
+import com.example.bnilist.activity.BangunanActivity;
 import com.example.bnilist.model.RegionModel;
 
 import java.util.ArrayList;
 
-public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHolder> {
+public class BangunanRegionAdapter extends RecyclerView.Adapter<BangunanRegionAdapter.RegionHolder> {
 
-    Context context;
+    private Context context;
     public ArrayList<RegionModel> data;
 
-    public RegionAdapter(Context context, ArrayList<RegionModel> data){
+    public BangunanRegionAdapter(Context context, ArrayList<RegionModel> data) {
         super();
         this.context = context;
-        this.data= data;
+        this.data = data;
     }
+
+    @NonNull
     @Override
-    public RegionHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RegionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.activity_wilayah_item,parent,false);
-        RegionHolder holder = new RegionHolder(itemView);
+        BangunanRegionAdapter.RegionHolder holder = new BangunanRegionAdapter.RegionHolder(itemView);
         return holder;
     }
 
-    //DATA BOUND TO VIEWS
     @Override
-    public void onBindViewHolder(RegionHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RegionHolder holder, int position) {
         //BIND DATA
         holder.tvCode.setText(data.get(position).getCode());
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
@@ -49,7 +50,7 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
             @Override
             public void onItemClick(View v, int pos) {
 //                Toast.makeText(context, data.get(pos).getId(),Toast.LENGTH_LONG).show();
-                Intent i = new Intent(context, KantorActivity.class);
+                Intent i = new Intent(context, BangunanActivity.class);
 
                 //Add data
                 i.putExtra("id",data.get(pos).getId());
@@ -58,11 +59,12 @@ public class RegionAdapter extends RecyclerView.Adapter<RegionAdapter.RegionHold
             }
         });
     }
-    //GET TOTAL NUM OF data
+
     @Override
     public int getItemCount() {
         return data.size();
     }
+
 
     class RegionHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

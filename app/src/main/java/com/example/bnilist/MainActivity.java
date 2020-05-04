@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.example.bnilist.activity.InfoActivity;
-import com.example.bnilist.activity.WilayahActivity;
+import com.example.bnilist.activity.WilayahKantorActivity;
 import com.example.bnilist.activity.WilayahBangunanActivity;
+import com.example.bnilist.utils.SharedPrefManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.infoButton)
     RelativeLayout infoButton;
 
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        sharedPrefManager = new SharedPrefManager(this);
+
         initComponent();
     }
 
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         kantorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahActivity.class);
+                Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahKantorActivity.class);
                 kantorActivityIntent.putExtra("phonenumber", phonenumber);
                 startActivity(kantorActivityIntent);
             }
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent bangunanActivityIntent = new Intent(getApplicationContext(), WilayahBangunanActivity.class);
+                bangunanActivityIntent.putExtra("phonenumber", phonenumber);
                 startActivity(bangunanActivityIntent);
             }
         });

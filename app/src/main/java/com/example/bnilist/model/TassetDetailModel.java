@@ -19,6 +19,10 @@ public class TassetDetailModel implements Serializable {
     @Expose
     private String nilaibuku;
 
+    @SerializedName("massetcompfk")
+    @Expose
+    private String massetcompfk;
+
     public Integer getId() {
         return id;
     }
@@ -51,4 +55,11 @@ public class TassetDetailModel implements Serializable {
         this.nilaibuku = nilaibuku;
     }
 
+    public String getMassetcompfk() {
+        return massetcompfk;
+    }
+
+    public void setMassetcompfk(String massetcompfk) {
+        this.massetcompfk = massetcompfk;
+    }
 }

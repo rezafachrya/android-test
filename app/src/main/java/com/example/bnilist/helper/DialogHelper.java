@@ -11,9 +11,17 @@ import android.content.DialogInterface;
 
 public class DialogHelper {
     public static void onClickedErrorDialog(Context context, String message) {
-        new MaterialAlertDialogBuilder(context, R.style.AlertDialogTheme_Center)
+        new MaterialAlertDialogBuilder(context, R.style.ErrorDialogTheme_Center)
                 .setTitle(message)
                 .setIcon(R.drawable.ic_error_outline_white_24dp)
+                .setPositiveButton("Ok", null)
+                .show();
+    }
+
+    public static void onClickedSuccessDialog(Context context, String message) {
+        new MaterialAlertDialogBuilder(context, R.style.SuccessDialogTheme_Center)
+                .setTitle(message)
+                .setIcon(R.drawable.ic_done_white_24dp)
                 .setPositiveButton("Ok", null)
                 .show();
     }

@@ -77,11 +77,11 @@ public class TassetModel implements Serializable{
 
     @SerializedName("longitude")
     @Expose
-    private Integer longitude;
+    private String longitude;
 
     @SerializedName("latitude")
     @Expose
-    private Integer latitude;
+    private String latitude;
 
     @SerializedName("urlimage1")
     @Expose
@@ -98,6 +98,10 @@ public class TassetModel implements Serializable{
     @SerializedName("urlimage4")
     @Expose
     private String urlimage4;
+
+    @SerializedName("assettype")
+    @Expose
+    private String assettype;
 
     @SerializedName("detaildata")
     @Expose
@@ -167,11 +171,11 @@ public class TassetModel implements Serializable{
         this.nib = nib;
     }
 
-    public Integer getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
@@ -279,12 +283,20 @@ public class TassetModel implements Serializable{
         this.noimb = noimb;
     }
 
-    public Integer getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getAssettype() {
+        return assettype;
+    }
+
+    public void setAssettype(String assettype) {
+        this.assettype = assettype;
     }
 
 
