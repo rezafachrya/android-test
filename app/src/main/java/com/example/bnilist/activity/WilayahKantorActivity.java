@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.bnilist.R;
-import com.example.bnilist.adapter.RegionAdapter;
+import com.example.bnilist.adapter.KantorRegionAdapter;
 import com.example.bnilist.model.RegionModel;
 import com.example.bnilist.model.RegionResponseModel;
 
@@ -32,14 +32,14 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_REGION;
 
-public class WilayahActivity extends AppCompatActivity {
+public class WilayahKantorActivity extends AppCompatActivity {
     @BindView(R.id.toolBar)
     Toolbar toolBar;
     @BindView(R.id.rcWilayah)
     RecyclerView rcWilayah;
     private RegionResponseModel regionResponseModel;
     private ArrayList<RegionModel> data = new ArrayList<>();
-    private RegionAdapter regionAdapter;
+    private KantorRegionAdapter kantorRegionAdapter;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     OkHttpClient client = new OkHttpClient();
@@ -55,8 +55,8 @@ public class WilayahActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rcWilayah.setLayoutManager(layoutManager);
         rcWilayah.setHasFixedSize(true);
-        regionAdapter = new RegionAdapter(this,data);
-        rcWilayah.setAdapter(regionAdapter);
+        kantorRegionAdapter = new KantorRegionAdapter(this,data);
+        rcWilayah.setAdapter(kantorRegionAdapter);
     }
 
     protected void initComponent () {
@@ -92,7 +92,7 @@ public class WilayahActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String strJson = response.body().string();
-                    WilayahActivity.this.runOnUiThread(new Runnable() {
+                    WilayahKantorActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -108,7 +108,7 @@ public class WilayahActivity extends AppCompatActivity {
                                     rg.setId(id);
                                     rg.setName(name);
                                     rg.setCode(code);
-                                    regionAdapter.notifyDataSetChanged();
+                                    kantorRegionAdapter.notifyDataSetChanged();
                                     data.add(rg);
                                 }
 

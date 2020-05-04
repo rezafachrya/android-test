@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.bnilist.R;
 import com.example.bnilist.adapter.SlideShowAdapter;
 import com.example.bnilist.helper.DialogHelper;
 import com.example.bnilist.model.LoginModel;
+import com.example.bnilist.utils.SharedPrefManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -60,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
     private Timer timer;
     Context mContext;
 
+    SharedPrefManager sharedPrefManager;
+
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     LoginModel loginModel;
 
@@ -73,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        sharedPrefManager = new SharedPrefManager(this);
+
         runnable = () -> {
             int i = viewPager.getCurrentItem();
             if(i == adapter.images.length -1) {
@@ -85,6 +91,14 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         initComponent();
+
+        if (sharedPrefManager.getSPHasLogin()){
+            String phoneNumber = sharedPrefManager.getSpHandphone();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("phonenumber", phoneNumber);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void initComponent() {
@@ -158,6 +172,11 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     call.cancel();
+                    LoginActivity.this.runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
 
                 @Override
@@ -171,7 +190,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (code.equals("200")) {
                                 LoginActivity.this.runOnUiThread(new Runnable() {
                                     public void run() {
-                                        DialogHelper.onClickedErrorDialog(LoginActivity.this, "Berhasil Login");
+                                        DialogHelper.onClickedSuccessDialog(LoginActivity.this, "Berhasil Login");
+                                        sharedPrefManager.SaveSPString(SharedPrefManager.SP_HANDPHONE, phonenumber);
+                                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, true);
                                         Intent intent = new Intent(mContext,MainActivity.class);
                                         intent.putExtra("phonenumber", phonenumber);
                                         startActivity(intent);

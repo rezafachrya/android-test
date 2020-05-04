@@ -2,17 +2,23 @@ package com.example.bnilist.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.example.bnilist.R;
+import com.example.bnilist.adapter.AssetAdapter;
 import com.example.bnilist.adapter.TassetAdapter;
+import com.example.bnilist.model.AssetModel;
 import com.example.bnilist.model.TassetDetailModel;
 import com.example.bnilist.model.TassetModel;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +26,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,13 +40,20 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_ASSET;
 
-public class KantorActivity extends AppCompatActivity {
-
+public class BangunanActivity extends AppCompatActivity {
+    @BindView(R.id.rcKp)
+    RecyclerView rcKp;
     @BindView(R.id.toolBar)
     Toolbar toolBar;
-    @BindView(R.id.rcKantor)
-    RecyclerView rcKantor;
+    @BindView(R.id.spBangunan)
+    SmartMaterialSpinner spBangunan;
+
+    private AssetAdapter adapter;
+    private List<String> jnsList;
+    private String jnsSelected;
+
     private ArrayList<TassetModel> data = new ArrayList<>();
+    private ArrayList<TassetModel> tempJenisList;
     private TassetAdapter tassetAdapter;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -48,21 +62,16 @@ public class KantorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kantor);
+        setContentView(R.layout.activity_bangunan);
         ButterKnife.bind(this);
-        setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("BNI PFA");
-        initComponent();
         String koderegion = getIntent().getStringExtra("id");
-        getKantorList(BASEURL_ASSET, koderegion);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        rcKantor.setLayoutManager(layoutManager);
-        rcKantor.setHasFixedSize(true);
-        tassetAdapter = new TassetAdapter(this, data);
-        rcKantor.setAdapter(tassetAdapter);
+        getBangunanList(BASEURL_ASSET, koderegion);
+        initComponent();
     }
 
     protected void initComponent() {
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setTitle("BNI PFA");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,10 +80,58 @@ public class KantorActivity extends AppCompatActivity {
                 finish();
             }
         });
+        //SET ITS PROPERTIES
+        rcKp.setLayoutManager(new LinearLayoutManager(this));
+        rcKp.setItemAnimator(new DefaultItemAnimator());
+        //ADAPTER
+//        adapter= new AssetAdapter(this,getBuildings());
+//        rcKp.setAdapter(adapter);
 
+        jnsList = new ArrayList<>();
+        jnsList.add("Semua Jenis");
+        jnsList.add("Villa");
+        jnsList.add("Rumah Dinas");
+        jnsList.add("Tanah");
+        jnsList.add("Gudang");
+
+        spBangunan.setItem(jnsList);
+        spBangunan.setSelection(0);
+
+        spBangunan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                jnsSelected = jnsList.get(position);
+                tempJenisList = new ArrayList<>();
+                if (jnsSelected.toLowerCase().equals("Semua Jenis".toLowerCase())) {
+//                    tempJenisList.addAll(data);
+                    for (TassetModel assetModel : data) {
+                        tempJenisList.add(assetModel);
+                    }
+                    tassetAdapter = new TassetAdapter(getApplicationContext(), tempJenisList);
+                    rcKp.setAdapter(tassetAdapter);
+                    spBangunan.setSelection(position);
+                }
+                else {
+                    for (TassetModel assetModel : data) {
+                        if (assetModel.getAssettype() != null) {
+                            if (jnsSelected.toLowerCase().equals(assetModel.getAssettype().toLowerCase())) {
+                                tempJenisList.add(assetModel);
+                            }
+                        }
+                    }
+                    tassetAdapter = new TassetAdapter(getApplicationContext(), tempJenisList);
+                    rcKp.setAdapter(tassetAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    private void getKantorList(String postUrl, String koderegion) {
+    private void getBangunanList(String postUrl, String koderegion) {
         JSONObject jsonReq = new JSONObject();
         try {
             jsonReq.put("koderegion", koderegion);
@@ -93,7 +150,7 @@ public class KantorActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String strJson = response.body().string();
-                    KantorActivity.this.runOnUiThread(new Runnable() {
+                    BangunanActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -124,6 +181,7 @@ public class KantorActivity extends AppCompatActivity {
                                     String urlimage4 = jsonObject1.getString("urlimage4");
                                     String longitude = jsonObject1.getString("longitude");
                                     String latitude = jsonObject1.getString("latitude");
+                                    String assettype = jsonObject1.getString("assettype");
 //                                    assetdetail = new ArrayList<>();
 //                                    assetdetail.clear();
                                     ArrayList<TassetDetailModel> assetdetail = new ArrayList<>();
@@ -168,13 +226,12 @@ public class KantorActivity extends AppCompatActivity {
                                     ts.setUrlimage4(urlimage4);
                                     ts.setLongitude(longitude);
                                     ts.setLatitude(latitude);
+                                    ts.setAssettype(assettype);
                                     ts.setDetaildata(assetdetail);
-                                    if (kpa.toLowerCase().equals("Kantor".toLowerCase())) {
+                                    if (kpa.toLowerCase().equals("Bangunan".toLowerCase())) {
                                         data.add(ts);
                                     }
                                 }
-                                tassetAdapter.notifyDataSetChanged();
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -184,4 +241,5 @@ public class KantorActivity extends AppCompatActivity {
             }
         });
     }
+
 }

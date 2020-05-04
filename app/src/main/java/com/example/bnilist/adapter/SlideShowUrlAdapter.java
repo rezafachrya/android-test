@@ -40,11 +40,11 @@ public class SlideShowUrlAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.login_slider_image, container, false);
         ImageView img = view.findViewById(R.id.imageview_ID);
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.mipmap.ic_launcher);
-        requestOptions.error(R.mipmap.ic_launcher);
+//        RequestOptions requestOptions = new RequestOptions();
+//        requestOptions.placeholder(R.mipmap.ic_launcher);
+//        requestOptions.error(R.mipmap.ic_launcher);
         //img.setImageResource(images[position]);
-        Glide.with(context).setDefaultRequestOptions(requestOptions).load(images[position]).into(img);
+        Glide.with(context).load(images[position]).into(img);
 //        img.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

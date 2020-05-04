@@ -13,6 +13,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
@@ -22,15 +23,18 @@
         <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">@android:color/white</item>
     </style>
+
     <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textColor">@color/grey_10</item>
         <item name="android:textStyle">bold</item>
         <item name="textAllCaps">true</item>
     </style>
+
     <style name="Toolbar.Light" parent="@style/AppTheme">
         <item name="colorControlNormal">@color/grey_60</item>
         <item name="android:textColorPrimary">@color/grey_60</item>
     </style>
+
     <style name="RippleStyleWhite">
         <item name="mrl_rippleOverlay">true</item>
         <item name="mrl_rippleColor">#80FFFFFF</item>
@@ -68,7 +72,9 @@
         <item name="rippleColor">#a4a4a4</item>
     </style>
 
-    <style name="AlertDialogTheme.Center" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+
+    <!--    error dialog-->
+    <style name="ErrorDialogTheme.Center" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorSurface">#f5f5f5</item>
         <item name="materialAlertDialogTitlePanelStyle">@style/TitlePaneStyleCenter</item>
         <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyleCenter</item>
@@ -83,6 +89,25 @@
         <item name="android:background">#FF0000</item>
         <item name="android:padding">16dp</item>
     </style>
+
+    <!--    success dialog-->
+
+    <style name="SuccessDialogTheme.Center" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">#f5f5f5</item>
+        <item name="materialAlertDialogTitlePanelStyle">@style/SuccessTitlePaneStyleCenter</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleTextStyleCenter</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/TitleIconStyleCenter</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyTextStyleCenter</item>
+        <item name="buttonBarStyle">@style/ButtonBarStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="SuccessTitlePaneStyleCenter" parent="MaterialAlertDialog.MaterialComponents.Title.Panel.CenterStacked">
+        <item name="android:background">#00b300</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
 
     <style name="TitleIconStyleCenter" parent="MaterialAlertDialog.MaterialComponents.Title.Icon.CenterStacked">
         <item name="android:tint">#F5F5F5</item>
@@ -108,7 +133,7 @@
         <item name="android:background">#f5f5f5</item>
     </style>
 
-<!--    style for collapsing toolbar-->
+    <!--    style for collapsing toolbar-->
     <style name="TextAppearance.Design.CollapsingToolbar.Expanded.Shadow">
         <item name="android:shadowDy">0</item>
         <item name="android:shadowDx">0</item>
@@ -116,5 +141,19 @@
         <item name="android:shadowColor">@android:color/black</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">20dp</item>
+    </style>
+
+    <!--    style for splash screen-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
+    <!--    style for bottom sheet-->
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+    
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>

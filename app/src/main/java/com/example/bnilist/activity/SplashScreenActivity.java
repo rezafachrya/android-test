@@ -2,6 +2,7 @@ package com.example.bnilist.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,6 +25,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     @BindView(R.id.iv_logo)
     ImageView ivLogo;
 
+    Animation fadeAnim;
+    private static int SPLASH_SCREEN = 4000;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,32 +42,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         ButterKnife.bind(this);
 
-        initComponent();
-    }
+        fadeAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 
-    public void initComponent() {
+        ivLogo.setAnimation(fadeAnim);
 
-        final Animation an = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        ivLogo.startAnimation(an);
-
-        an.setAnimationListener(new Animation.AnimationListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
+            public void run() {
+                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                startActivity(intent);
                 finish();
-                Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(i);
-
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
+        }, SPLASH_SCREEN);
     }
 }
