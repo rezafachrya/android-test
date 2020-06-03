@@ -1,15 +1,16 @@
 <resources>
-    <string name="app_name">BNI List</string>
+    <string name="app_name">BNI Informasi Aset</string>
     <string name="bnilogo">Logo</string>
     <string name="pfa">Divisi PFA</string>
     <string name="detailasset">Detail Aset</string>
-    <string name="title">Sistem Informasi Aset Tanah Bangunan</string>
+    <string name="title">Informasi Aset</string>
     <string name="bniasset">BNI Asset</string>
     <string name="addphonenumber">Enter Your Phone Number</string>
     <string name="login">Login</string>
     <string name="noasset">No Aset</string>
     <string name="nibasset">NIB Aset</string>
     <string name="kelasasset">Kelas Aset</string>
+    <string name="jenisasset">Jenis Aset</string>
     <string name="alamat">Alamat Aset</string>
     <string name="kelurahan">Kelurahan</string>
     <string name="kecamatan">Kecamatan</string>
@@ -22,7 +23,7 @@
     <string name="imb">IMB</string>
     <string name="nop">Nomor Objek Pajak</string>
     <string name="tabel">Tabel</string>
-    <string name="juta">(Rp Juta)</string>
+    <string name="juta">(Rp)</string>
     <string name="jnsasset">Jenis Aset</string>
     <string name="nilaieval">Nilai Revaluasi</string>
     <string name="nilaiperolehan">Nilai Perolehan</string>
@@ -34,4 +35,9 @@
     <string name="m">m</string>
     <string name="colon">:</string>
     <string name="slash">/</string>
+    <string name="divisi_pfa">Divisi PFA</string>
+    <string name="selamat_datang">Selamat Datang</string>
+    <string name="info">Info</string>
+    <string name="logout">Logout</string>
+    <string name="home">Home</string>
 </resources>

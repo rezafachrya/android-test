@@ -15,10 +15,8 @@ import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.AssetAdapter;
 import com.example.bnilist.adapter.TassetAdapter;
-import com.example.bnilist.model.AssetModel;
 import com.example.bnilist.model.TassetDetailModel;
 import com.example.bnilist.model.TassetModel;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,7 +69,7 @@ public class BangunanActivity extends AppCompatActivity {
 
     protected void initComponent() {
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("BNI PFA");
+        getSupportActionBar().setTitle("List Aset");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,9 +87,9 @@ public class BangunanActivity extends AppCompatActivity {
 
         jnsList = new ArrayList<>();
         jnsList.add("Semua Jenis");
-        jnsList.add("Villa");
+        jnsList.add("Kantor");
         jnsList.add("Rumah Dinas");
-        jnsList.add("Tanah");
+        jnsList.add("Villa");
         jnsList.add("Gudang");
 
         spBangunan.setItem(jnsList);

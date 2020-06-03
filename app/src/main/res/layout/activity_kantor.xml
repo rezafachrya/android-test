@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.KantorActivity"
+    tools:context=".activity.TanahActivity"
     android:background="@drawable/bg_hal2">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

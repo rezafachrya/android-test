@@ -25,4 +25,16 @@ public class DialogHelper {
                 .setPositiveButton("Ok", null)
                 .show();
     }
+
+    public static void onClickedLogoutDialog(Context context, String message) {
+        new MaterialAlertDialogBuilder(context, R.style.ErrorDialogTheme_Center)
+                .setTitle(message)
+                .setIcon(R.drawable.ic_error_outline_white_24dp)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+    }
 }

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bnilist.ItemClickListener;
 import com.example.bnilist.R;
-import com.example.bnilist.activity.KantorActivity;
+import com.example.bnilist.activity.TanahActivity;
 import com.example.bnilist.model.RegionModel;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ public class KantorRegionAdapter extends RecyclerView.Adapter<KantorRegionAdapte
             @Override
             public void onItemClick(View v, int pos) {
 //                Toast.makeText(context, data.get(pos).getId(),Toast.LENGTH_LONG).show();
-                Intent i = new Intent(context, KantorActivity.class);
+                Intent i = new Intent(context, TanahActivity.class);
 
                 //Add data
                 i.putExtra("id",data.get(pos).getId());

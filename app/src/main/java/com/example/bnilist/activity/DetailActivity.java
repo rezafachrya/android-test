@@ -121,17 +121,6 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-        //images
-        String[] imgs = {
-                "https://www.biruindonesia.com/images/43425854_252752518728088_23874612079041435_n.jpg",
-                "https://4.bp.blogspot.com/-_DqXM1SN6pk/WhOTgW9xuaI/AAAAAAAAE_A/gaF0Td1UqmM2yyeG5v9Gzca4TtQpMjQsgCLcBGAs/s1600/bank-bni-pusat.jpg",
-                "https://lh6.googleusercontent.com/proxy/FYTBv0Mz9VZpHW-zMR6poYpOqLOoIGbInvwKwn3VxjWLDtCjcPcz83LOnFPmBw6sDcbqLfmrPzmccpFoXDgNER9KmP1ODazVtJiG-2mobURu",
-        };
-        slideShowUrlAdapter = new SlideShowUrlAdapter(this, imgs);
-        viewPager.setAdapter(slideShowUrlAdapter);
-        indicator3.setViewPager(viewPager);
-        handler = new Handler();
-
         //RECEIVE OUR DATA
         Intent i = getIntent();
         TassetModel tassetModel = (TassetModel) Objects.requireNonNull(i.getExtras()).getSerializable("data");
@@ -149,6 +138,13 @@ public class DetailActivity extends AppCompatActivity {
                 nilaiBukuBangunan = Float.parseFloat(tassetModel.getDetaildata().get(j).getNilaibuku());
             }
         }
+        String[] imgs = {
+                tassetModel.getUrlimage1(),
+                tassetModel.getUrlimage2(),
+                tassetModel.getUrlimage3(),
+                tassetModel.getUrlimage4()
+        };
+
         String strTotalReval = UtilHelper.thousandFormatNumber(String.format("%.0f", totalReval));
         String strTotalPerolehan = UtilHelper.thousandFormatNumber(String.format("%.0f", totalPerolehan));
         String strTotalNilaiBuku = UtilHelper.thousandFormatNumber(String.format("%.0f", totalNilaiBuku));
@@ -186,6 +182,10 @@ public class DetailActivity extends AppCompatActivity {
         tvPerolehanBangunan.setText(strPerolehanBangunan);
         tvNilaibukuBangunan.setText(strNilaiBukuBangungan);
 
+        slideShowUrlAdapter = new SlideShowUrlAdapter(this, imgs);
+        viewPager.setAdapter(slideShowUrlAdapter);
+        indicator3.setViewPager(viewPager);
+
         fabMaps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,24 +195,5 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        runnable = () -> {
-            int i1 = viewPager.getCurrentItem();
-            if (i1 == slideShowUrlAdapter.images.length - 1) {
-                i1 = 0;
-                viewPager.setCurrentItem(i1, true);
-            } else {
-                i1++;
-                viewPager.setCurrentItem(i1, true);
-            }
-        };
-
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(runnable);
-            }
-        }, 4000, 4000);
     }
 }

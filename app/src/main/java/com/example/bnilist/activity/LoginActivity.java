@@ -19,14 +19,17 @@ import com.example.bnilist.R;
 import com.example.bnilist.adapter.SlideShowAdapter;
 import com.example.bnilist.helper.DialogHelper;
 import com.example.bnilist.model.LoginModel;
+import com.example.bnilist.model.UserModel;
 import com.example.bnilist.utils.SharedPrefManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -62,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     private Timer timer;
     Context mContext;
 
+    private ArrayList<UserModel> data = new ArrayList<>();
     SharedPrefManager sharedPrefManager;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -81,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
         runnable = () -> {
             int i = viewPager.getCurrentItem();
-            if(i == adapter.images.length -1) {
+            if (i == adapter.images.length - 1) {
                 i = 0;
                 viewPager.setCurrentItem(i, true);
             } else {
@@ -92,10 +96,12 @@ public class LoginActivity extends AppCompatActivity {
 
         initComponent();
 
-        if (sharedPrefManager.getSPHasLogin()){
+        if (sharedPrefManager.getSPHasLogin()) {
             String phoneNumber = sharedPrefManager.getSpHandphone();
+            String username = sharedPrefManager.getSpUsername();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("phonenumber", phoneNumber);
+            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         }
@@ -105,9 +111,10 @@ public class LoginActivity extends AppCompatActivity {
         mContext = this;
 
         int[] arrImages = {
-                R.drawable.bnikc,
-                R.drawable.bnipejompongan,
-                R.drawable.bnibsd,
+                R.drawable.bni_bg1,
+                R.drawable.bni_bg2,
+                R.drawable.bni_bg3,
+                R.drawable.bni_bg4
         };
 
         adapter = new SlideShowAdapter(this, arrImages);
@@ -160,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
     private void reqLogin(String postUrl, String phonenumber) throws IOException {
         JSONObject jsonReq = new JSONObject();
         try {
-            jsonReq.put("phonenumber",phonenumber);
+            jsonReq.put("phonenumber", phonenumber);
         } catch (JSONException je) {
             je.printStackTrace();
         }
@@ -168,50 +175,53 @@ public class LoginActivity extends AppCompatActivity {
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(JSON, jsonReq.toString());//postBody.toString());
         Request request = new Request.Builder().url(postUrl).post(body).build();
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    call.cancel();
-                    LoginActivity.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        try {
-                            String strJson = response.body().string();
-                            JSONObject json = new JSONObject(strJson);
-                            String code = json.getString("code");
-                            String msg = json.getString("message");
-                            if (code.equals("200")) {
-                                LoginActivity.this.runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        DialogHelper.onClickedSuccessDialog(LoginActivity.this, "Berhasil Login");
-                                        sharedPrefManager.SaveSPString(SharedPrefManager.SP_HANDPHONE, phonenumber);
-                                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, true);
-                                        Intent intent = new Intent(mContext,MainActivity.class);
-                                        intent.putExtra("phonenumber", phonenumber);
-                                        startActivity(intent);
-                                    }
-                                });
-                            } else {
-                                LoginActivity.this.runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        DialogHelper.onClickedErrorDialog(LoginActivity.this, "PASSWORD ANDA SALAH");
-                                    }
-                                });
-                            }
-                        } catch (JSONException je) {
-                            je.printStackTrace();
-                        }
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                call.cancel();
+                LoginActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
                     }
+                });
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    try {
+                        final String strJson = response.body().string();
+                        JSONObject json = new JSONObject(strJson);
+                        String code = json.getString("code");
+                        String msg = json.getString("message");
+                        String username = json.getJSONObject("data").getString("username");
+                        if (code.equals("200")) {
+                            LoginActivity.this.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    DialogHelper.onClickedSuccessDialog(LoginActivity.this, "Berhasil Login");
+                                    sharedPrefManager.SaveSPString(SharedPrefManager.SP_HANDPHONE, phonenumber);
+                                    sharedPrefManager.SaveSPString(SharedPrefManager.SP_USERNAME, username);
+                                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, true);
+                                    Intent intent = new Intent(mContext, MainActivity.class);
+                                    intent.putExtra("phonenumber", phonenumber);
+                                    intent.putExtra("username", username);
+                                    startActivity(intent);
+                                }
+                            });
+                        } else {
+                            LoginActivity.this.runOnUiThread(new Runnable() {
+                                public void run() {
+                                    DialogHelper.onClickedErrorDialog(LoginActivity.this, "PASSWORD ANDA SALAH");
+                                }
+                            });
+                        }
+                    } catch (JSONException je) {
+                        je.printStackTrace();
+                    }
                 }
-            });
+
+            }
+        });
     }
 }
 
