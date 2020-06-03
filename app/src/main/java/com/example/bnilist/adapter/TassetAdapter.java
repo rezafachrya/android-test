@@ -2,7 +2,6 @@ package com.example.bnilist.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bnilist.ItemClickListener;
 import com.example.bnilist.R;
 import com.example.bnilist.activity.DetailActivity;
-import com.example.bnilist.activity.KantorActivity;
 import com.example.bnilist.model.TassetModel;
 
 import java.util.ArrayList;

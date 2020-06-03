@@ -13,8 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/grey">
+        android:background="@color/grey"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/noasset"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +88,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/nibasset"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,7 +119,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/kelasasset"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -148,7 +148,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/alamat"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,7 +179,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/kelurahan"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,7 +210,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/kecamatan"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -241,7 +241,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/kota"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -270,7 +270,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/provinsi"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -284,7 +284,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -301,7 +301,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/kodepos"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -315,7 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -332,7 +332,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/ltlb"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -348,7 +348,7 @@
                     android:fontFamily="sans-serif"
                     android:paddingStart="0dp"
                     android:paddingEnd="5dp"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -361,9 +361,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/mlt"
-                        android:fontFamily="@font/poppins"
                         android:text="@string/angka2"
-                        android:textColor="@color/colorTextGray"
+                        android:textColor="@color/colorBlackText"
                         android:textSize="12sp"
                         tools:ignore="MissingPrefix" />
 
@@ -391,7 +390,7 @@
                     android:fontFamily="sans-serif"
                     android:paddingStart="0dp"
                     android:paddingEnd="5dp"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -404,9 +403,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/mlb"
-                        android:fontFamily="@font/poppins_bold"
                         android:text="@string/angka2"
-                        android:textColor="@color/colorTextGray"
+                        android:textColor="@color/colorBlackText"
                         android:textSize="12sp"
                         tools:ignore="MissingPrefix" />
 
@@ -436,7 +434,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/jml_lantai"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -450,7 +448,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -467,7 +465,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/doc_legal"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -481,7 +479,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -496,7 +494,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/imb"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -510,7 +508,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -527,7 +525,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="@string/nop"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -541,7 +539,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#000000" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </LinearLayout>
 
@@ -637,7 +635,9 @@
                         android:layout_marginBottom="1dp"
                         android:layout_weight="1"
                         android:background="@color/white"
-                        android:gravity="center"
+                        android:gravity="start"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="@string/tanah"
                         android:textSize="12sp" />
 
@@ -651,6 +651,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
 
@@ -664,6 +666,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
 
@@ -677,6 +681,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
                 </TableRow>
@@ -690,7 +696,9 @@
                         android:layout_marginBottom="1dp"
                         android:layout_weight="1"
                         android:background="@color/white"
-                        android:gravity="center"
+                        android:gravity="start"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="@string/bangunan"
                         android:textSize="12sp" />
 
@@ -704,6 +712,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
 
@@ -717,6 +727,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
 
@@ -730,6 +742,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
                 </TableRow>
@@ -743,7 +757,9 @@
                         android:layout_marginBottom="1dp"
                         android:layout_weight="1"
                         android:background="@color/white"
-                        android:gravity="center"
+                        android:gravity="start"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text="@string/total"
                         android:textSize="12sp" />
 
@@ -757,6 +773,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
 
@@ -770,8 +788,10 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvNilaibukuTotal"
@@ -783,6 +803,8 @@
                         android:layout_weight="1"
                         android:background="@color/white"
                         android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
                         android:text=""
                         android:textSize="12sp" />
                 </TableRow>

@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bnilist.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SlideShowUrlAdapter extends PagerAdapter {
     private Context context;
@@ -45,12 +46,12 @@ public class SlideShowUrlAdapter extends PagerAdapter {
 //        requestOptions.error(R.mipmap.ic_launcher);
         //img.setImageResource(images[position]);
         Glide.with(context).load(images[position]).into(img);
-//        img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Image" + (position + 1), Snackbar.LENGTH_LONG).show();
-//            }
-//        });
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Image" + (position + 1), Snackbar.LENGTH_LONG).show();
+            }
+        });
         container.addView(view);
         return view;
     }

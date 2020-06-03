@@ -33,7 +33,7 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_ASSET;
 
-public class KantorActivity extends AppCompatActivity {
+public class TanahActivity extends AppCompatActivity {
 
     @BindView(R.id.toolBar)
     Toolbar toolBar;
@@ -51,7 +51,7 @@ public class KantorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kantor);
         ButterKnife.bind(this);
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("BNI PFA");
+        getSupportActionBar().setTitle("List Aset");
         initComponent();
         String koderegion = getIntent().getStringExtra("id");
         getKantorList(BASEURL_ASSET, koderegion);
@@ -93,7 +93,7 @@ public class KantorActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String strJson = response.body().string();
-                    KantorActivity.this.runOnUiThread(new Runnable() {
+                    TanahActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -169,7 +169,7 @@ public class KantorActivity extends AppCompatActivity {
                                     ts.setLongitude(longitude);
                                     ts.setLatitude(latitude);
                                     ts.setDetaildata(assetdetail);
-                                    if (kpa.toLowerCase().equals("Kantor".toLowerCase())) {
+                                    if (kpa.toLowerCase().equals("Tanah".toLowerCase())) {
                                         data.add(ts);
                                     }
                                 }

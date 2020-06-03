@@ -10,6 +10,8 @@ public class SharedPrefManager {
 
     public static final String SP_HANDPHONE = "spHandphone";
 
+    public static final String SP_USERNAME = "spUsername";
+
     public static final String SP_HAS_LOGIN = "spHasLogin";
 
     SharedPreferences sp;
@@ -38,6 +40,10 @@ public class SharedPrefManager {
 
     public String getSpHandphone(){
         return sp.getString(SP_HANDPHONE, "");
+    }
+
+    public String getSpUsername(){
+        return sp.getString(SP_USERNAME, "");
     }
 
     public Boolean getSPHasLogin(){

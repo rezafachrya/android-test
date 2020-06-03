@@ -5,7 +5,7 @@
     android:id="@+id/parent_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg4">
+    android:background="@drawable/bg_login2">
 
 
     <ImageView
@@ -13,7 +13,7 @@
         android:layout_width="320dp"
         android:layout_height="170dp"
         android:contentDescription="@string/bnilogo"
-        android:src="@drawable/logo_login"
+        android:src="@drawable/logo_login1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,13 +53,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/outlinedTextField"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_height="70dp"
         android:layout_marginTop="24dp"
         android:hint="@string/addphonenumber"
         android:paddingHorizontal="40dp"
-        app:boxBackgroundMode="outline"
+        app:boxBackgroundColor="@color/white"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -70,8 +69,8 @@
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="087778889990"
-            android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
+            android:inputType="number"
+            android:text="087778889990" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

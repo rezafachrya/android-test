@@ -64,7 +64,7 @@ public class WilayahBangunanActivity extends AppCompatActivity {
 
     protected void initComponent(){
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("BNI PFA");
+        getSupportActionBar().setTitle("Kelolaan");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

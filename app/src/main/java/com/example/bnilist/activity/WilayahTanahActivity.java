@@ -32,7 +32,7 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_REGION;
 
-public class WilayahKantorActivity extends AppCompatActivity {
+public class WilayahTanahActivity extends AppCompatActivity {
     @BindView(R.id.toolBar)
     Toolbar toolBar;
     @BindView(R.id.rcWilayah)
@@ -61,7 +61,7 @@ public class WilayahKantorActivity extends AppCompatActivity {
 
     protected void initComponent () {
         setSupportActionBar(toolBar);
-        getSupportActionBar().setTitle("Wilayah");
+        getSupportActionBar().setTitle("Kelolaan");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +92,7 @@ public class WilayahKantorActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     final String strJson = response.body().string();
-                    WilayahKantorActivity.this.runOnUiThread(new Runnable() {
+                    WilayahTanahActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {

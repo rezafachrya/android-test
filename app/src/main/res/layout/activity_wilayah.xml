@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.WilayahKantorActivity"
+    tools:context=".activity.WilayahTanahActivity"
     android:background="@drawable/bg_hal2"
     android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
