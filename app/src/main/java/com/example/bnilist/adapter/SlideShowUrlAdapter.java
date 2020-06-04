@@ -1,6 +1,8 @@
 package com.example.bnilist.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bnilist.R;
+import com.example.bnilist.activity.DetailActivity;
+import com.example.bnilist.activity.DetailsImageActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 public class SlideShowUrlAdapter extends PagerAdapter {
@@ -49,7 +55,12 @@ public class SlideShowUrlAdapter extends PagerAdapter {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Image" + (position + 1), Snackbar.LENGTH_LONG).show();
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, img, "imageShare");
+                Intent intent = new Intent(context, DetailsImageActivity.class);
+                intent.putExtra("urlimage", images[position]);
+                context.startActivity(intent, options.toBundle());
+
+//                Snackbar.make(view, "Image" + images[position] + (position + 1), Snackbar.LENGTH_LONG).show();
             }
         });
         container.addView(view);
