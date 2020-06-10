@@ -75,6 +75,10 @@ public class TassetModel implements Serializable{
     @Expose
     private String nib;
 
+    @SerializedName("thnrevaluasi")
+    @Expose
+    private String thnrevaluasi;
+
     @SerializedName("longitude")
     @Expose
     private String longitude;
@@ -306,5 +310,13 @@ public class TassetModel implements Serializable{
 
     public void setDetaildata(ArrayList<TassetDetailModel> detaildata) {
         this.detaildata = detaildata;
+    }
+
+    public String getThnrevaluasi() {
+        return thnrevaluasi;
+    }
+
+    public void setThnrevaluasi(String thnrevaluasi) {
+        this.thnrevaluasi = thnrevaluasi;
     }
 }

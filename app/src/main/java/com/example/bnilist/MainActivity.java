@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setNegativeButton("Tidak", null)
+                .setCancelable(false)
                 .show();
     }
 

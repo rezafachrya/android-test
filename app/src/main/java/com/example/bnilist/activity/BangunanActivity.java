@@ -173,6 +173,7 @@ public class BangunanActivity extends AppCompatActivity {
                                     String luastanah = jsonObject1.getString("luastanah");
                                     String noimb = jsonObject1.getString("noimb");
                                     String nib = jsonObject1.getString("nib");
+                                    String thnrevaluasi = jsonObject1.getString("thnrevaluasi");
                                     String urlimage1 = jsonObject1.getString("urlimage1");
                                     String urlimage2 = jsonObject1.getString("urlimage2");
                                     String urlimage3 = jsonObject1.getString("urlimage3");
@@ -218,6 +219,7 @@ public class BangunanActivity extends AppCompatActivity {
                                     ts.setLuastanah(luastanah);
                                     ts.setNoimb(noimb);
                                     ts.setNib(nib);
+                                    ts.setThnrevaluasi(thnrevaluasi);
                                     ts.setUrlimage1(urlimage1);
                                     ts.setUrlimage2(urlimage2);
                                     ts.setUrlimage3(urlimage3);

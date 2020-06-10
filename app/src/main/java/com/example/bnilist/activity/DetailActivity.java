@@ -59,6 +59,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvNoimb;
     @BindView(R.id.tvNmrpjk)
     TextView tvNmrpjk;
+    @BindView(R.id.tvThnreval)
+    TextView tvThnreval;
     @BindView(R.id.tvRevalTanah)
     TextView tvRevalTanah;
     @BindView(R.id.tvPerolehanTanah)
@@ -172,6 +174,7 @@ public class DetailActivity extends AppCompatActivity {
         tvDoklegal.setText(tassetModel.getDoclegal());
         tvNoimb.setText(tassetModel.getNoimb());
         tvNmrpjk.setText(tassetModel.getNop());
+        tvThnreval.setText(tassetModel.getThnrevaluasi());
         tvRevalTotal.setText(strTotalReval);
         tvPerolehanTotal.setText(strTotalPerolehan);
         tvNilaibukuTotal.setText(strTotalNilaiBuku);
