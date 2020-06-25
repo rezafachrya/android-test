@@ -75,12 +75,15 @@ public class BangunanActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // back button pressed
-                finish();
+//                finish();
+                BangunanActivity.super.onBackPressed();
             }
         });
         //SET ITS PROPERTIES
         rcKp.setLayoutManager(new LinearLayoutManager(this));
         rcKp.setItemAnimator(new DefaultItemAnimator());
+        tassetAdapter = new TassetAdapter(getApplicationContext(), data);
+        rcKp.setAdapter(tassetAdapter);
         //ADAPTER
 //        adapter= new AssetAdapter(this,getBuildings());
 //        rcKp.setAdapter(adapter);
@@ -93,7 +96,8 @@ public class BangunanActivity extends AppCompatActivity {
         jnsList.add("Gudang");
 
         spBangunan.setItem(jnsList);
-        spBangunan.setSelection(0);
+//        spBangunan.setSelection(0);
+
 
         spBangunan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -107,9 +111,7 @@ public class BangunanActivity extends AppCompatActivity {
                     }
                     tassetAdapter = new TassetAdapter(getApplicationContext(), tempJenisList);
                     rcKp.setAdapter(tassetAdapter);
-                    spBangunan.setSelection(position);
-                }
-                else {
+                } else {
                     for (TassetModel assetModel : data) {
                         if (assetModel.getAssettype() != null) {
                             if (jnsSelected.toLowerCase().equals(assetModel.getAssettype().toLowerCase())) {

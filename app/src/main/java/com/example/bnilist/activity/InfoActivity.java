@@ -43,22 +43,22 @@ public class InfoActivity extends AppCompatActivity {
     @BindView(R.id.btnTerbengkalai)
     MaterialButton btnTerbengkalai;
 
-    String url = "http://192.168.43.144:8080/ams/files/doc/200607150301_test.pdf";
-    String keyword = "test.pdf";
+    String url = "http://192.168.43.144:8080/ams/files/doc/AsetTerbengkalai.pdf";
+    String keyword = "AsetTerbengkalai.pdf";
 
     private static final String TAG = "InfoActivity";
-    private static final String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+//    private static final String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-    private static boolean hasPermissions(Context context, String... permissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+//    private static boolean hasPermissions(Context context, String... permissions) {
+////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+////            for (String permission : permissions) {
+////                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+////                    return false;
+////                }
+////            }
+////        }
+////        return true;
+////    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class InfoActivity extends AppCompatActivity {
 
         Log.v(TAG, "onCreate() Method invoked ");
 
-        ActivityCompat.requestPermissions(InfoActivity.this, PERMISSIONS, 112);
+//        ActivityCompat.requestPermissions(InfoActivity.this, PERMISSIONS, 112);
     }
 
     protected void initComponent() {
@@ -147,96 +147,96 @@ public class InfoActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(resolver.getType(uri));
     }
 
-    public void download(View view) {
-        Log.v(TAG, "download() Method invoked ");
+//    public void download(View view) {
+//        Log.v(TAG, "download() Method invoked ");
+//
+//        if (!hasPermissions(InfoActivity.this, PERMISSIONS)) {
+//
+//            Log.v(TAG, "download() Method DON'T HAVE PERMISSIONS ");
+//
+//            Toast t = Toast.makeText(getApplicationContext(), "You don't have write access !", Toast.LENGTH_LONG);
+//            t.show();
+//
+//        } else {
+//            Log.v(TAG, "download() Method HAVE PERMISSIONS ");
+//
+////            new DownloadFile().execute("http://maven.apache.org/maven-1.x/maven.pdf", "maven.pdf");
+//            new DownloadFile().execute("http://www.axmag.com/download/pdfurl-guide.pdf", "mantap.pdf");
+//
+//        }
+//
+//        Log.v(TAG, "download() Method completed ");
+//    }
 
-        if (!hasPermissions(InfoActivity.this, PERMISSIONS)) {
-
-            Log.v(TAG, "download() Method DON'T HAVE PERMISSIONS ");
-
-            Toast t = Toast.makeText(getApplicationContext(), "You don't have write access !", Toast.LENGTH_LONG);
-            t.show();
-
-        } else {
-            Log.v(TAG, "download() Method HAVE PERMISSIONS ");
-
-//            new DownloadFile().execute("http://maven.apache.org/maven-1.x/maven.pdf", "maven.pdf");
-            new DownloadFile().execute("http://www.axmag.com/download/pdfurl-guide.pdf", "mantap.pdf");
-
-        }
-
-        Log.v(TAG, "download() Method completed ");
-    }
-
-    public void view(View view) {
-        Log.v(TAG, "view() Method invoke ");
-
-        if (!hasPermissions(InfoActivity.this, PERMISSIONS)) {
-            Log.v(TAG, "download() Method DON`T HAVE PERMISSIONS ");
-
-            Toast t = Toast.makeText(getApplicationContext(), "You don`t have read access !", Toast.LENGTH_LONG);
-            t.show();
-        } else {
-            File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File pdfFile = new File(d, "mantap.pdf");
-
-            Log.v(TAG, "view() Method pdfFile " + pdfFile.getAbsolutePath());
-
-            Uri path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
-
-
-            Log.v(TAG, "view() Method path " + path);
-
-            Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-            pdfIntent.setDataAndType(path, "application/pdf");
-            pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-            try {
-                startActivity(pdfIntent);
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(InfoActivity.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
-            }
-        }
-        Log.v(TAG, "view() Method completed ");
-    }
-
-    public void request(View view) {
-        ActivityCompat.requestPermissions(InfoActivity.this, PERMISSIONS, 112);
-    }
-
-    private class DownloadFile extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            Log.v(TAG, "doInBackground() Method invoked ");
-
-            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
-            String fileName = strings[1];  // -> maven.pdf
-            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-            File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//            File folder = mContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-
-
-            File pdfFile = new File(folder, fileName);
-            Log.v(TAG, "doInBackground() pdfFile invoked " + pdfFile.getAbsolutePath());
-            Log.v(TAG, "doInBackground() pdfFile invoked " + pdfFile.getAbsoluteFile());
-
-            try {
-                pdfFile.createNewFile();
-                Log.v(TAG, "doInBackground() file created" + pdfFile);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e(TAG, "doInBackground() error" + e.getMessage());
-                Log.e(TAG, "doInBackground() error" + e.getStackTrace());
-
-
-            }
-            FileDownloader.downloadFile(fileUrl, pdfFile);
-            Log.v(TAG, "doInBackground() file download completed");
-
-            return null;
-        }
-    }
+//    public void view(View view) {
+//        Log.v(TAG, "view() Method invoke ");
+//
+//        if (!hasPermissions(InfoActivity.this, PERMISSIONS)) {
+//            Log.v(TAG, "download() Method DON`T HAVE PERMISSIONS ");
+//
+//            Toast t = Toast.makeText(getApplicationContext(), "You don`t have read access !", Toast.LENGTH_LONG);
+//            t.show();
+//        } else {
+//            File d = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//            File pdfFile = new File(d, "mantap.pdf");
+//
+//            Log.v(TAG, "view() Method pdfFile " + pdfFile.getAbsolutePath());
+//
+//            Uri path = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", pdfFile);
+//
+//
+//            Log.v(TAG, "view() Method path " + path);
+//
+//            Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+//            pdfIntent.setDataAndType(path, "application/pdf");
+//            pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//            try {
+//                startActivity(pdfIntent);
+//            } catch (ActivityNotFoundException e) {
+//                Toast.makeText(InfoActivity.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//        Log.v(TAG, "view() Method completed ");
+//    }
+//
+//    public void request(View view) {
+//        ActivityCompat.requestPermissions(InfoActivity.this, PERMISSIONS, 112);
+//    }
+//
+//    private class DownloadFile extends AsyncTask<String, Void, Void> {
+//
+//        @Override
+//        protected Void doInBackground(String... strings) {
+//            Log.v(TAG, "doInBackground() Method invoked ");
+//
+//            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
+//            String fileName = strings[1];  // -> maven.pdf
+//            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+//            File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+////            File folder = mContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+//
+//
+//            File pdfFile = new File(folder, fileName);
+//            Log.v(TAG, "doInBackground() pdfFile invoked " + pdfFile.getAbsolutePath());
+//            Log.v(TAG, "doInBackground() pdfFile invoked " + pdfFile.getAbsoluteFile());
+//
+//            try {
+//                pdfFile.createNewFile();
+//                Log.v(TAG, "doInBackground() file created" + pdfFile);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                Log.e(TAG, "doInBackground() error" + e.getMessage());
+//                Log.e(TAG, "doInBackground() error" + e.getStackTrace());
+//
+//
+//            }
+//            FileDownloader.downloadFile(fileUrl, pdfFile);
+//            Log.v(TAG, "doInBackground() file download completed");
+//
+//            return null;
+//        }
+//    }
 }
