@@ -42,9 +42,14 @@ public class InfoActivity extends AppCompatActivity {
     Toolbar toolBar;
     @BindView(R.id.btnTerbengkalai)
     MaterialButton btnTerbengkalai;
+    @BindView(R.id.btnBermasalah)
+    MaterialButton btnBermasalah;
 
     String url = "http://192.168.43.144:8080/ams/files/doc/AsetTerbengkalai.pdf";
     String keyword = "AsetTerbengkalai.pdf";
+
+    String urlFileBermasalah = "http://192.168.43.144:8080/ams/files/doc/AsetBermasalah.pdf";
+    String fileNameBermasalah = "AsetBermasalah.pdf";
 
     private static final String TAG = "InfoActivity";
 //    private static final String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -100,6 +105,23 @@ public class InfoActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnBermasalah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(InfoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        String fileName = fileNameBermasalah;
+                        downloadFile(fileName, urlFileBermasalah);
+                    } else {
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION);
+                    }
+                } else {
+                    String fileName = fileNameBermasalah;
+                    downloadFile(fileName, urlFileBermasalah);
+                }
+            }
+        });
     }
 
     private void downloadFile(String fileName, String url) {
@@ -110,7 +132,7 @@ public class InfoActivity extends AppCompatActivity {
                 DownloadManager.Request request = new DownloadManager.Request(downloadURI);
                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
                         .setTitle(fileName)
-                        .setDescription("Downloading "+fileName)
+                        .setDescription("Downloading " + fileName)
                         .setAllowedOverMetered(true)
                         .setAllowedOverRoaming(true)
                         .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
@@ -124,7 +146,7 @@ public class InfoActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-            Log.e("ERROR:MAIN", "E: " +e.getMessage());
+            Log.e("ERROR:MAIN", "E: " + e.getMessage());
         }
     }
 
