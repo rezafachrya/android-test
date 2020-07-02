@@ -1,347 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg1"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp">
 
         <RelativeLayout
+            android:id="@+id/l1"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/l1"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:id="@+id/ucap"
-                    android:textStyle="bold"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/divisi_pfa"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    tools:ignore="MissingPrefix" />
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/muli_bold"
+                android:text="@string/divisi_pfa"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:ignore="MissingPrefix,RelativeOverlap" />
 
-                <Button
-                    android:id="@+id/logoutButton"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.15"
-                    android:layout_marginTop="5dp"
-                    app:icon="@drawable/icon_logout3"
-                    android:gravity="end"
-                    app:iconTint="@color/white"
-                    app:iconSize="30dp" />
-            </LinearLayout>
-
+            <ImageView
+                android:id="@+id/logoutButton"
+                android:layout_marginTop="5dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_logout3" />
 
             <TextView
                 android:id="@+id/kamu"
-                fontPath="fonts/Poppins-Black.otf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/l1"
-                android:layout_alignParentStart="true"
-                android:text="@string/title"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                tools:ignore="MissingPrefix" />
-
-            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                tools:ignore="MissingPrefix" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/car4"
-                    android:layout_width="match_parent"
-                    android:layout_height="145dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@color/white"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="5dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/welcome"
-                            fontPath="fonts/Poppins-SemiBold.otf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/selamat_datang"
-                            android:textColor="@color/black"
-                            android:textSize="17sp"
-                            tools:ignore="MissingPrefix" />
-
-                        <LinearLayout
-                            android:id="@+id/garis"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_below="@id/welcome"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/grey"
-                            android:orientation="horizontal" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/garis"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvName"
-                                fontPath="fonts/Poppins-SemiBold.otf"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginTop="5dp"
-                                android:textColor="@color/black"
-                                android:textSize="17sp"
-                                tools:ignore="MissingPrefix,RelativeOverlap" />
-                        </LinearLayout>
-
-                    </RelativeLayout>
-
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/bni_logo"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
-                </androidx.cardview.widget.CardView>
-
-
-            </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
-
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:gravity="center_vertical">
+            android:layout_alignParentBottom="true">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/car4"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/white"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
-            <TextView
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center">
 
-                android:id="@+id/txte"
-                fontPath="fonts/Poppins-Bold.otf"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text="Menu"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                tools:ignore="MissingPrefix" />
+                    <TextView
+                        android:id="@+id/welcome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/selamat_datang"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        tools:ignore="MissingPrefix" />
+
+                    <LinearLayout
+                        android:id="@+id/garis"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/welcome"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/grey"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/garis"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            tools:ignore="MissingPrefix,RelativeOverlap" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            android:weightSum="1">
+    </RelativeLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_mSend"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.33"
+    <TextView
+        android:id="@+id/tvMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/menu"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        tools:ignore="MissingPrefix" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_mSend"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:id="@+id/bangunanButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
+                android:focusable="true">
 
-                <RelativeLayout
-                    android:id="@+id/bangunanButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/textView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/icon_gedung" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_above="@+id/textView2"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:src="@drawable/icon_gedung" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="1"
+                    android:text="@string/bangunan"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
 
-                    <TextView
+            </RelativeLayout>
 
-                        android:id="@+id/textView2"
-                        fontPath="fonts/Poppins-SemiBold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:maxLines="1"
-                        android:text="Bangunan"
-                        android:textColor="@color/colorTextGray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
+        </androidx.cardview.widget.CardView>
 
-                </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_mRide"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_mRide"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.33"
+            <RelativeLayout
+                android:id="@+id/kantorButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
+                android:focusable="true">
 
-                <RelativeLayout
-                    android:id="@+id/kantorButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/textView3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/tanah"
+                    android:src="@drawable/icon_tanah" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_above="@+id/textView3"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:contentDescription="@string/tanah"
-                        android:src="@drawable/icon_tanah" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="1"
+                    android:text="@string/tanah"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/textView3"
-                        fontPath="fonts/Poppins-SemiBold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:maxLines="1"
-                        android:text="@string/tanah"
-                        android:textColor="@color/colorTextGray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_mCar"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/home_mCar"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_margin="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.33"
+            <RelativeLayout
+                android:id="@+id/infoButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
+                android:focusable="true">
 
-                <RelativeLayout
-                    android:id="@+id/infoButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:focusable="true">
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_above="@+id/textView6"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:contentDescription="@string/info"
+                    android:src="@drawable/icon_info" />
 
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_above="@+id/textView6"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:contentDescription="@string/info"
-                        android:src="@drawable/icon_info" />
-
-                    <TextView
-
-                        android:id="@+id/textView6"
-                        fontPath="fonts/Poppins-SemiBold.otf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="5dp"
-                        android:maxLines="1"
-                        android:text="@string/info"
-                        android:textColor="@color/colorTextGray"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="1"
+                    android:text="@string/info"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-    <!--        android:id="@+id/bottomNavigation"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        app:menu="@menu/bottomnavigation_menu" />-->
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true">-->
-
-<!--        <RelativeLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/logoutButton"-->
-<!--                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"-->
-<!--                android:layout_width="70dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                app:icon="@drawable/icon_logout2"-->
-<!--                app:iconTint="@color/black"-->
-<!--                app:iconSize="50dp" />-->
-
-<!--        </RelativeLayout>-->
-
-<!--    </androidx.cardview.widget.CardView>-->
-
-</RelativeLayout>
+</LinearLayout>

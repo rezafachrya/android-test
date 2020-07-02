@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.tvName)
     TextView tvName;
     @BindView(R.id.logoutButton)
-    Button logoutButton;
+    ImageView logoutButton;
 //    @BindView(R.id.bottomNavigation)
 //    BottomNavigationView bottomNavigationView;
 
