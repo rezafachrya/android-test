@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.WilayahTanahActivity"
     android:background="@drawable/bg_hal2"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activity.WilayahTanahActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,22 +22,34 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="20dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_marginVertical="20dp">
+
+        <RelativeLayout
+            android:id="@+id/relayWilayahProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_circle_background"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true">
+            <ProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcWilayah"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rcWilayah"
-            android:scrollbars="vertical">
+            android:scrollbars="vertical"
+            android:layout_centerInParent="true">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

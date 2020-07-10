@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.BangunanRegionAdapter;
@@ -40,6 +42,8 @@ public class WilayahBangunanActivity extends AppCompatActivity {
     Toolbar toolBar;
     @BindView(R.id.rcWilayah)
     RecyclerView rcWilayah;
+    @BindView(R.id.relayWilayahProgressBar)
+    RelativeLayout relayWilayahProgressBar;
     private RegionResponseModel regionResponseModel;
     private ArrayList<RegionModel> data = new ArrayList<>();
     private BangunanRegionAdapter bangunanRegionAdapter;
@@ -73,6 +77,9 @@ public class WilayahBangunanActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        relayWilayahProgressBar.setVisibility(View.VISIBLE);
+
     }
 
     private void getRegionList(String postUrl, String phonenumber){
@@ -89,6 +96,13 @@ public class WilayahBangunanActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 call.cancel();
+                WilayahBangunanActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        relayWilayahProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -99,6 +113,7 @@ public class WilayahBangunanActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
+                                relayWilayahProgressBar.setVisibility(View.GONE);
                                 JSONObject jsonObject = new JSONObject(strJson);
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                                 for(int i = 0; i < jsonArray.length(); i++) {

@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = validasi();
                 if (msg != null) {
-                    DialogHelper.onClickedErrorDialog(LoginActivity.this, msg);
+                    DialogHelper.showErrorDialog(LoginActivity.this,"", msg);
                     return;
                 }
                 try {
@@ -219,7 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                             LoginActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
                                     relayLoginProgressBar.setVisibility(View.GONE);
-                                    DialogHelper.onClickedErrorDialog(LoginActivity.this, "DATA TIDAK DITEMUKAN");
+                                    DialogHelper.showErrorDialog(LoginActivity.this,"", "DATA TIDAK DITEMUKAN");
                                 }
                             });
                         }

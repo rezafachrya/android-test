@@ -2,6 +2,8 @@ package com.example.bnilist.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +41,8 @@ public class TanahActivity extends AppCompatActivity {
     Toolbar toolBar;
     @BindView(R.id.rcKantor)
     RecyclerView rcKantor;
+    @BindView(R.id.relayTanahProgressBar)
+    RelativeLayout relayTanahProgressBar;
     private ArrayList<TassetModel> data = new ArrayList<>();
     private TassetAdapter tassetAdapter;
 
@@ -72,6 +76,7 @@ public class TanahActivity extends AppCompatActivity {
             }
         });
 
+        relayTanahProgressBar.setVisibility(View.VISIBLE);
     }
 
     private void getKantorList(String postUrl, String koderegion) {
@@ -87,6 +92,13 @@ public class TanahActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 call.cancel();
+                TanahActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        relayTanahProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -97,6 +109,7 @@ public class TanahActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
+                                relayTanahProgressBar.setVisibility(View.GONE);
                                 JSONObject jsonObject = new JSONObject(strJson);
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
                                 for (int i = 0; i < jsonArray.length(); i++) {

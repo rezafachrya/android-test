@@ -2,12 +2,14 @@ package com.example.bnilist;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.example.bnilist.helper.DialogHelper.createCustomText;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.kantorButton)
@@ -89,54 +94,59 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout(MainActivity.this, "Apakah Anda Ingin Keluar ?");
-            }
-        });
-
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.home_menu:
-//                        break;
-//                    case R.id.bangunan_menu:
-//                        Intent bangunanActivityIntent = new Intent(getApplicationContext(), WilayahBangunanActivity.class);
-//                        bangunanActivityIntent.putExtra("phonenumber", phonenumber);
-//                        startActivity(bangunanActivityIntent);
-//                        break;
-//                    case R.id.tanah_menu:
-//                        Intent kantorActivityIntent = new Intent(getApplicationContext(), WilayahTanahActivity.class);
-//                        kantorActivityIntent.putExtra("phonenumber", phonenumber);
-//                        startActivity(kantorActivityIntent);
-//                        break;
-//                    case R.id.logout:
-//                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, false);
-//                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
-//                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-//                        finish();
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
-    }
-
-    public void logout(Context context, String message) {
-        new MaterialAlertDialogBuilder(context, R.style.ErrorDialogTheme_Center)
-                .setTitle(message)
-                .setIcon(R.drawable.ic_error_outline_white_24dp)
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                logout(MainActivity.this, "Apakah Anda Ingin Keluar ?");
+                showConfirmgWithCallback(MainActivity.this, "Logout", "Anda yakin akan logout dari aplikasi?", "Logout", "Batal", new SweetAlertDialog.OnSweetClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
                         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, false);
                         startActivity(new Intent(MainActivity.this, LoginActivity.class)
                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                         finish();
                     }
-                })
-                .setNegativeButton("Tidak", null)
-                .setCancelable(false)
-                .show();
+                }).show();
+            }
+        });
+    }
+
+//    public void logout(Context context, String message) {
+//        new MaterialAlertDialogBuilder(context, R.style.ErrorDialogTheme_Center)
+//                .setTitle(message)
+//                .setIcon(R.drawable.ic_error_outline_white_24dp)
+//                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_HAS_LOGIN, false);
+//                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
+//                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+//                        finish();
+//                    }
+//                })
+//                .setNegativeButton("Tidak", null)
+//                .setCancelable(false)
+//                .show();
+//    }
+
+    private SweetAlertDialog showConfirmgWithCallback(final Context c, String title, String content, String confirmText, String cancelText, SweetAlertDialog.OnSweetClickListener listener) {
+        final SweetAlertDialog sweetDialog = new SweetAlertDialog(c, SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText(title)
+                .setCustomView(createCustomText(c, content))
+                .setConfirmText(confirmText)
+                .setCancelText(cancelText)
+                .showCancelButton(true)
+                .setCustomView(createCustomText(c, content))
+                .setConfirmClickListener(listener);
+        sweetDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+//                sweetDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).setBackground(c.getResources().getDrawable(R.drawable.border_orange_dark_rounded_big_fill));
+                sweetDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.border_orange_dark_rounded_big_fill, null));
+                sweetDialog.getButton(SweetAlertDialog.BUTTON_CANCEL).setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.border_orange_dark_rounded_big_fill, null));
+                sweetDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).setTextSize(TypedValue.COMPLEX_UNIT_PX, c.getResources().getDimension(R.dimen._8ssp));
+                sweetDialog.getButton(SweetAlertDialog.BUTTON_CANCEL).setTextSize(TypedValue.COMPLEX_UNIT_PX, c.getResources().getDimension(R.dimen._8ssp));
+            }
+        });
+
+        return sweetDialog;
     }
 
     @Override

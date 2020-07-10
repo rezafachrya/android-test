@@ -21,19 +21,21 @@ import com.example.bnilist.activity.DetailActivity;
 import com.example.bnilist.activity.DetailsImageActivity;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 public class SlideShowUrlAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater inflater;
-    public String[] images;
+    public List<String> images;
 
-    public SlideShowUrlAdapter(Context context, String[] images) {
+    public SlideShowUrlAdapter(Context context, List<String> images) {
         this.context = context;
         this.images = images;
     }
 
     @Override
     public int getCount() {
-        return images.length;
+        return images.size();
     }
 
     @Override
@@ -51,13 +53,13 @@ public class SlideShowUrlAdapter extends PagerAdapter {
 //        requestOptions.placeholder(R.mipmap.ic_launcher);
 //        requestOptions.error(R.mipmap.ic_launcher);
         //img.setImageResource(images[position]);
-        Glide.with(context).load(images[position]).into(img);
+        Glide.with(context).load(images.get(position)).into(img);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, img, "imageShare");
                 Intent intent = new Intent(context, DetailsImageActivity.class);
-                intent.putExtra("urlimage", images[position]);
+                intent.putExtra("urlimage", images.get(position));
                 context.startActivity(intent, options.toBundle());
 
 //                Snackbar.make(view, "Image" + images[position] + (position + 1), Snackbar.LENGTH_LONG).show();
