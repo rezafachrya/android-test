@@ -144,12 +144,6 @@
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">20dp</item>
     </style>
-
-    <!--    style for splash screen-->
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
-
     <!--    style for bottom sheet-->
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>

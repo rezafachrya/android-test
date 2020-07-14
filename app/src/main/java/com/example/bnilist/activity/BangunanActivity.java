@@ -1,6 +1,7 @@
 package com.example.bnilist.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
@@ -17,6 +18,7 @@ import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.AssetAdapter;
 import com.example.bnilist.adapter.TassetAdapter;
+import com.example.bnilist.model.JenisAssetModel;
 import com.example.bnilist.model.TassetDetailModel;
 import com.example.bnilist.model.TassetModel;
 
@@ -39,6 +41,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_ASSET;
+import static com.example.bnilist.helper.ConfigHelper.BASEURL_JNSASSET;
 
 public class BangunanActivity extends AppCompatActivity {
     @BindView(R.id.rcKp)
@@ -56,6 +59,8 @@ public class BangunanActivity extends AppCompatActivity {
 
     private ArrayList<TassetModel> data = new ArrayList<>();
     private ArrayList<TassetModel> tempJenisList;
+
+    private ArrayList<JenisAssetModel> jenisAssetData = new ArrayList<>();
     private TassetAdapter tassetAdapter;
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -67,7 +72,10 @@ public class BangunanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bangunan);
         ButterKnife.bind(this);
         String koderegion = getIntent().getStringExtra("id");
+        String phonenumber = getIntent().getStringExtra("phonenumber");
         getBangunanList(BASEURL_ASSET, koderegion);
+        getJnsAsetList(BASEURL_JNSASSET, phonenumber);
+
         initComponent();
     }
 
@@ -90,18 +98,16 @@ public class BangunanActivity extends AppCompatActivity {
         rcKp.setItemAnimator(new DefaultItemAnimator());
         tassetAdapter = new TassetAdapter(getApplicationContext(), data);
         rcKp.setAdapter(tassetAdapter);
-        //ADAPTER
-//        adapter= new AssetAdapter(this,getBuildings());
-//        rcKp.setAdapter(adapter);
 
-        jnsList = new ArrayList<>();
-        jnsList.add("Semua Jenis");
-        jnsList.add("Kantor");
-        jnsList.add("Rumah Dinas");
-        jnsList.add("Villa");
-        jnsList.add("Gudang");
+//        jnsList.add("Semua Jenis");
 
-        spBangunan.setItem(jnsList);
+//        for (int i = 0; i < jenisAssetData.size(); i++) {
+//            jnsList = new ArrayList<>();
+//            jnsList.add(jenisAssetData.get(i).getName());
+//            spBangunan.setItem(jnsList);
+//        }
+
+
 //        spBangunan.setSelection(0);
 
 
@@ -256,6 +262,69 @@ public class BangunanActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void getJnsAsetList(String baseurlJnsasset, String phonenumber) {
+        JSONObject jsonReq = new JSONObject();
+        try {
+            jsonReq.put("phonenumber", phonenumber);
+        } catch (JSONException je) {
+            je.printStackTrace();
+        }
+        RequestBody body = RequestBody.create(JSON, jsonReq.toString());
+        Request request = new Request.Builder().url(baseurlJnsasset).post(body).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                call.cancel();
+                BangunanActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        relayBangunanProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    final String strJson = response.body().string();
+                    BangunanActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                relayBangunanProgressBar.setVisibility(View.GONE);
+                                JSONObject jsonObject = new JSONObject(strJson);
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JenisAssetModel jenisAssetModel = new JenisAssetModel();
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    String jnsasset = jsonObject1.getString("jnsasset");
+                                    String name = jsonObject1.getString("name");
+
+                                    jenisAssetModel.setJnsasset(jnsasset);
+                                    jenisAssetModel.setName(name);
+
+                                    if (jnsasset.toLowerCase().equals("bangunan".toLowerCase())) {
+                                        jenisAssetData.add(jenisAssetModel);
+                                        jnsList = new ArrayList<>();
+                                        jnsList.add("Semua Jenis");
+                                        for (int j = 0; j < jenisAssetData.size(); j++) {
+                                            jnsList.add(jenisAssetData.get(j).getName());
+                                        }
+                                        spBangunan.setItem(jnsList);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
 }

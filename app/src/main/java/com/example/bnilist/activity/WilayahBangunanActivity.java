@@ -59,14 +59,14 @@ public class WilayahBangunanActivity extends AppCompatActivity {
         initComponent();
         String phonenumber = getIntent().getStringExtra("phonenumber");
         getRegionList(BASEURL_REGION, phonenumber);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rcWilayah.setLayoutManager(layoutManager);
         rcWilayah.setHasFixedSize(true);
-        bangunanRegionAdapter = new BangunanRegionAdapter(this,data);
+        bangunanRegionAdapter = new BangunanRegionAdapter(this, data, phonenumber);
         rcWilayah.setAdapter(bangunanRegionAdapter);
     }
 
-    protected void initComponent(){
+    protected void initComponent() {
         setSupportActionBar(toolBar);
         getSupportActionBar().setTitle("Kelolaan");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -82,11 +82,11 @@ public class WilayahBangunanActivity extends AppCompatActivity {
 
     }
 
-    private void getRegionList(String postUrl, String phonenumber){
+    private void getRegionList(String postUrl, String phonenumber) {
 
         JSONObject jsonReq = new JSONObject();
         try {
-            jsonReq.put("phonenumber",phonenumber);
+            jsonReq.put("phonenumber", phonenumber);
         } catch (JSONException je) {
             je.printStackTrace();
         }
@@ -116,7 +116,7 @@ public class WilayahBangunanActivity extends AppCompatActivity {
                                 relayWilayahProgressBar.setVisibility(View.GONE);
                                 JSONObject jsonObject = new JSONObject(strJson);
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for(int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     RegionModel rg = new RegionModel();
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     String id = jsonObject1.getString("id");

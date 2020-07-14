@@ -23,11 +23,13 @@ public class BangunanRegionAdapter extends RecyclerView.Adapter<BangunanRegionAd
 
     private Context context;
     public ArrayList<RegionModel> data;
+    private String phonenumber;
 
-    public BangunanRegionAdapter(Context context, ArrayList<RegionModel> data) {
+    public BangunanRegionAdapter(Context context, ArrayList<RegionModel> data, String phonenumber) {
         super();
         this.context = context;
         this.data = data;
+        this.phonenumber = phonenumber;
     }
 
     @NonNull
@@ -54,6 +56,7 @@ public class BangunanRegionAdapter extends RecyclerView.Adapter<BangunanRegionAd
 
                 //Add data
                 i.putExtra("id",data.get(pos).getId());
+                i.putExtra("phonenumber", phonenumber);
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
