@@ -7,9 +7,9 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="@dimen/_230sdp"
         android:id="@+id/imageview_ID"
-        android:src="@drawable/bnipejompongan"
+        android:src="@drawable/bni_bg1"
         android:scaleType="fitXY"
         android:fitsSystemWindows="true"
         android:transitionName="imageShare"

@@ -42,6 +42,8 @@ import okhttp3.Response;
 
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_ASSET;
 import static com.example.bnilist.helper.ConfigHelper.BASEURL_JNSASSET;
+import static com.example.bnilist.utils.UtilHelper.capitalize;
+import static com.example.bnilist.utils.UtilHelper.capitalizeFully;
 
 public class BangunanActivity extends AppCompatActivity {
     @BindView(R.id.rcKp)
@@ -311,7 +313,7 @@ public class BangunanActivity extends AppCompatActivity {
                                         jnsList = new ArrayList<>();
                                         jnsList.add("Semua Jenis");
                                         for (int j = 0; j < jenisAssetData.size(); j++) {
-                                            jnsList.add(jenisAssetData.get(j).getName());
+                                            jnsList.add(capitalizeFully(jenisAssetData.get(j).getName()));
                                         }
                                         spBangunan.setItem(jnsList);
                                     }
