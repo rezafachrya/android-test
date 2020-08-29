@@ -24,8 +24,7 @@
         android:id="@+id/line2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:paddingTop="5dp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
         android:gravity="center">
         <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
             android:id="@+id/spBangunan"
@@ -33,10 +32,28 @@
             android:layout_height="wrap_content"
             app:smsp_hint="Pilih Jenis Bangunan"/>
     </RelativeLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcKp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcKp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
+        <RelativeLayout
+            android:id="@+id/relayBangunanProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_circle_background"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:layout_centerInParent="true">
+
+            <ProgressBar
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
 
 </LinearLayout>

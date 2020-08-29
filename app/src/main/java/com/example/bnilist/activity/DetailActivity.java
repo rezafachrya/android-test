@@ -19,6 +19,8 @@ import com.example.bnilist.model.TassetModel;
 import com.example.bnilist.utils.UtilHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,6 +61,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvNoimb;
     @BindView(R.id.tvNmrpjk)
     TextView tvNmrpjk;
+    @BindView(R.id.tvThnreval)
+    TextView tvThnreval;
     @BindView(R.id.tvRevalTanah)
     TextView tvRevalTanah;
     @BindView(R.id.tvPerolehanTanah)
@@ -145,6 +149,13 @@ public class DetailActivity extends AppCompatActivity {
                 tassetModel.getUrlimage4()
         };
 
+        List<String> imgsResult = new ArrayList<>();
+        for (String img : imgs) {
+            if (!img.equals("")) {
+                imgsResult.add(img);
+            }
+        }
+        
         String strTotalReval = UtilHelper.thousandFormatNumber(String.format("%.0f", totalReval));
         String strTotalPerolehan = UtilHelper.thousandFormatNumber(String.format("%.0f", totalPerolehan));
         String strTotalNilaiBuku = UtilHelper.thousandFormatNumber(String.format("%.0f", totalNilaiBuku));
@@ -172,6 +183,7 @@ public class DetailActivity extends AppCompatActivity {
         tvDoklegal.setText(tassetModel.getDoclegal());
         tvNoimb.setText(tassetModel.getNoimb());
         tvNmrpjk.setText(tassetModel.getNop());
+        tvThnreval.setText(tassetModel.getThnrevaluasi());
         tvRevalTotal.setText(strTotalReval);
         tvPerolehanTotal.setText(strTotalPerolehan);
         tvNilaibukuTotal.setText(strTotalNilaiBuku);
@@ -182,7 +194,7 @@ public class DetailActivity extends AppCompatActivity {
         tvPerolehanBangunan.setText(strPerolehanBangunan);
         tvNilaibukuBangunan.setText(strNilaiBukuBangungan);
 
-        slideShowUrlAdapter = new SlideShowUrlAdapter(this, imgs);
+        slideShowUrlAdapter = new SlideShowUrlAdapter(this, imgsResult);
         viewPager.setAdapter(slideShowUrlAdapter);
         indicator3.setViewPager(viewPager);
 

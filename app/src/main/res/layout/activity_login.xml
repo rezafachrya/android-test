@@ -4,19 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_login2">
-
-
-    <ImageView
-        android:id="@+id/bni_logo"
-        android:layout_width="320dp"
-        android:layout_height="170dp"
-        android:contentDescription="@string/bnilogo"
-        android:src="@drawable/logo_login1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/frameLayout2"
@@ -25,66 +13,134 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bni_logo">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="10dp">
+            app:cardCornerRadius="@dimen/_3sdp"
+            app:cardElevation="@dimen/_5sdp">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager"
                 android:layout_width="match_parent"
-                android:layout_height="240dp" />
+                android:layout_height="@dimen/_230sdp" />
 
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/circleIndicator_ID"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="175dp"
-                app:ci_animator="@animator/scale_with_alpha"
-                app:ci_drawable="@drawable/orange_radius"
-                app:ci_drawable_unselected="@drawable/white_radius" />
-        </androidx.cardview.widget.CardView>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_35sdp">
 
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/circleIndicator_ID"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/_180sdp"
+                    app:ci_animator="@animator/scale_with_alpha"
+                    app:ci_drawable="@drawable/orange_radius"
+                    app:ci_drawable_unselected="@drawable/white_radius" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </FrameLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="24dp"
-        android:hint="@string/addphonenumber"
-        android:paddingHorizontal="40dp"
-        app:boxBackgroundColor="@color/white"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+    <View
+        android:id="@+id/viewSupporter"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/frameLayout2"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhone"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/_30sdp"
+        android:background="@drawable/login_background"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/bni_logo"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:contentDescription="@string/bnilogo"
+            android:src="@drawable/logo_login3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="@string/title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bni_logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="087778889990" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/addphonenumber"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:boxStrokeColor="@color/colorPrimary"
+            app:boxStrokeWidthFocused="3dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/colorPrimary"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_login"
+            app:startIconDrawable="@drawable/phone_icon"
+            app:startIconTint="@color/colorPrimary">
 
-    <Button
-        android:id="@+id/btnMasuk"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/border_orange_fill"
-        android:text="@string/login"
-        android:textColor="@android:color/white"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnMasuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/button_white_background"
+            android:text="@string/login"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/relayLoginProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_circle_background"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />
+        app:layout_constraintTop_toTopOf="@+id/frameLayout2">
 
-
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

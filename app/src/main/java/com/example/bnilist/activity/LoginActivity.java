@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -59,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout outlinedTextField;
     @BindView(R.id.circleIndicator_ID)
     CircleIndicator indicator3;
+    @BindView(R.id.relayLoginProgressBar)
+    RelativeLayout relayLoginProgressBar;
     private SlideShowAdapter adapter;
     private Handler handler;
     private Runnable runnable;
@@ -136,10 +139,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = validasi();
                 if (msg != null) {
-                    DialogHelper.onClickedErrorDialog(LoginActivity.this, msg);
+                    DialogHelper.showErrorDialog(LoginActivity.this,"", msg);
                     return;
                 }
                 try {
+                    relayLoginProgressBar.setVisibility(View.VISIBLE);
                     reqLogin(BASEURL, etPhone.getText().toString().trim());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -178,9 +182,11 @@ public class LoginActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+
                 call.cancel();
                 LoginActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
+                        relayLoginProgressBar.setVisibility(View.GONE);
                         Toast.makeText(mContext, "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -198,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (code.equals("200")) {
                             LoginActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
+                                    relayLoginProgressBar.setVisibility(View.GONE);
                                     DialogHelper.onClickedSuccessDialog(LoginActivity.this, "Berhasil Login");
                                     sharedPrefManager.SaveSPString(SharedPrefManager.SP_HANDPHONE, phonenumber);
                                     sharedPrefManager.SaveSPString(SharedPrefManager.SP_USERNAME, username);
@@ -211,15 +218,19 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             LoginActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
-                                    DialogHelper.onClickedErrorDialog(LoginActivity.this, "PASSWORD ANDA SALAH");
+                                    relayLoginProgressBar.setVisibility(View.GONE);
+                                    DialogHelper.showErrorDialog(LoginActivity.this,"", "DATA TIDAK DITEMUKAN");
                                 }
                             });
                         }
                     } catch (JSONException je) {
                         je.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                } else {
+                    relayLoginProgressBar.setVisibility(View.GONE);
                 }
-
             }
         });
     }

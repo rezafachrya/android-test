@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.bnilist.R;
 import com.example.bnilist.adapter.BangunanRegionAdapter;
@@ -40,6 +42,8 @@ public class WilayahBangunanActivity extends AppCompatActivity {
     Toolbar toolBar;
     @BindView(R.id.rcWilayah)
     RecyclerView rcWilayah;
+    @BindView(R.id.relayWilayahProgressBar)
+    RelativeLayout relayWilayahProgressBar;
     private RegionResponseModel regionResponseModel;
     private ArrayList<RegionModel> data = new ArrayList<>();
     private BangunanRegionAdapter bangunanRegionAdapter;
@@ -55,14 +59,14 @@ public class WilayahBangunanActivity extends AppCompatActivity {
         initComponent();
         String phonenumber = getIntent().getStringExtra("phonenumber");
         getRegionList(BASEURL_REGION, phonenumber);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rcWilayah.setLayoutManager(layoutManager);
         rcWilayah.setHasFixedSize(true);
-        bangunanRegionAdapter = new BangunanRegionAdapter(this,data);
+        bangunanRegionAdapter = new BangunanRegionAdapter(this, data, phonenumber);
         rcWilayah.setAdapter(bangunanRegionAdapter);
     }
 
-    protected void initComponent(){
+    protected void initComponent() {
         setSupportActionBar(toolBar);
         getSupportActionBar().setTitle("Kelolaan");
         toolBar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
@@ -73,13 +77,16 @@ public class WilayahBangunanActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        relayWilayahProgressBar.setVisibility(View.VISIBLE);
+
     }
 
-    private void getRegionList(String postUrl, String phonenumber){
+    private void getRegionList(String postUrl, String phonenumber) {
 
         JSONObject jsonReq = new JSONObject();
         try {
-            jsonReq.put("phonenumber",phonenumber);
+            jsonReq.put("phonenumber", phonenumber);
         } catch (JSONException je) {
             je.printStackTrace();
         }
@@ -89,6 +96,13 @@ public class WilayahBangunanActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 call.cancel();
+                WilayahBangunanActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        relayWilayahProgressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Koneksi Internet Bermasalah", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
@@ -99,9 +113,10 @@ public class WilayahBangunanActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
+                                relayWilayahProgressBar.setVisibility(View.GONE);
                                 JSONObject jsonObject = new JSONObject(strJson);
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for(int i = 0; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     RegionModel rg = new RegionModel();
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     String id = jsonObject1.getString("id");
